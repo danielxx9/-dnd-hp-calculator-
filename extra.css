@@ -1,0 +1,228 @@
+/* ============================================================
+   extra.css — shared styles for the site pages (About, Privacy,
+   Terms, FAQ, Changelog, 404) and the footer added to index.html.
+   Loaded AFTER styles.css so these rules can extend the theme.
+   Uses only the CSS custom properties defined in styles.css.
+   ============================================================ */
+
+/* ---------- Page chrome (subpages) ---------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 18px;
+}
+.site-header .brand {
+  font-family: 'Georgia', 'Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.site-header .brand:hover { color: var(--accent2); }
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.site-nav a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.site-nav a:hover { background: var(--highlight); color: var(--accent); }
+.site-nav a.current { background: var(--card); color: var(--accent); font-weight: 700; border: 1px solid var(--border); }
+
+.site-footer {
+  border-top: 2px solid var(--border);
+  margin-top: 28px;
+  padding: 18px 0 6px;
+  font-size: 0.82rem;
+  color: var(--text2);
+}
+.site-footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-bottom: 10px;
+}
+.site-footer a { color: var(--accent); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; color: var(--accent2); }
+.site-footer .fineprint { line-height: 1.7; }
+
+/* ---------- Prose layout for content pages ---------- */
+.prose { max-width: 760px; }
+.prose h1 {
+  font-family: 'Georgia', 'Garamond', serif;
+  color: var(--accent);
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+}
+.prose h2 {
+  font-family: 'Georgia', 'Garamond', serif;
+  color: var(--accent);
+  font-size: 1.25rem;
+  margin: 26px 0 8px;
+}
+.prose h3 { color: var(--text2); font-size: 1rem; margin: 18px 0 6px; }
+.prose p, .prose li { font-size: 0.95rem; line-height: 1.75; }
+.prose p { margin-bottom: 10px; }
+.prose ul, .prose ol { margin: 0 0 12px 22px; }
+.prose li { margin-bottom: 5px; }
+.prose strong { color: var(--text); }
+.prose code {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 0.85em;
+}
+.prose .updated {
+  font-size: 0.8rem;
+  color: var(--text2);
+  margin-bottom: 18px;
+}
+.prose a { color: var(--accent); }
+.prose a:hover { color: var(--accent2); }
+
+/* ---------- Callout boxes ---------- */
+.callout {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 14px 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.callout.warn { border-left-color: var(--warning); }
+.callout.info { border-left-color: var(--accent2); }
+
+/* ---------- Tables (data / storage keys) ---------- */
+.prose table { margin: 12px 0 16px; }
+.prose td, .prose th { vertical-align: top; font-size: 0.88rem; }
+
+/* ---------- FAQ accordions ---------- */
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.faq-item summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--card2);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before { content: '▸'; color: var(--accent); font-size: 0.9rem; transition: transform 0.2s; }
+.faq-item[open] summary::before { transform: rotate(90deg); }
+.faq-item summary:hover { background: var(--highlight); }
+.faq-item .faq-body { padding: 12px 14px; font-size: 0.92rem; line-height: 1.75; }
+.faq-item .faq-body p { margin-bottom: 8px; }
+.faq-item .faq-body p:last-child { margin-bottom: 0; }
+
+/* ---------- Changelog ---------- */
+.changelog-version {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+}
+.changelog-version .version-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.changelog-version .version-tag {
+  font-family: 'Georgia', 'Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.changelog-version .version-note { font-size: 0.8rem; color: var(--text2); }
+.changelog-version ul { margin: 0 0 0 20px; }
+.changelog-version li { font-size: 0.9rem; line-height: 1.7; margin-bottom: 4px; }
+
+/* ---------- Feature grid (About page) ---------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+.feature-card {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+.feature-card b { color: var(--accent); display: block; margin-bottom: 3px; font-size: 0.92rem; }
+
+/* ---------- 404 page ---------- */
+.notfound-wrap {
+  text-align: center;
+  padding: 60px 16px 40px;
+}
+.notfound-wrap .dice {
+  font-size: 3.2rem;
+  margin-bottom: 10px;
+}
+.notfound-wrap h1 {
+  font-family: 'Georgia', 'Garamond', serif;
+  color: var(--accent);
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+.notfound-wrap p { color: var(--text2); max-width: 480px; margin: 0 auto 18px; line-height: 1.7; }
+.notfound-stats { margin: 20px auto; max-width: 420px; }
+
+/* Anchor styled as the primary button (used on the 404 page). */
+.btn-link {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btn-link:hover { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+.small-links { font-size: 0.85rem; }
+.small-links a { color: var(--accent); text-decoration: none; }
+.small-links a:hover { text-decoration: underline; color: var(--accent2); }
+
+@media (max-width: 640px) {
+  .site-header { flex-direction: column; align-items: flex-start; }
+  .prose h1 { font-size: 1.45rem; }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — D&amp;D 5e HP Calculator &amp; Monster Builder</title>
+<meta name="description" content="About the 5e HP Forge: a free, private, browser-based toolkit of 20+ DM tools for D&D 5e hit point math, encounter building and combat tracking. No accounts, no tracking.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/about.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About — D&amp;D 5e HP Calculator &amp; Monster Builder">
+<meta property="og:description" content="A free, private, browser-based toolkit of 20+ DM tools for D&D 5e. No accounts, no tracking, works offline.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>About this tool</h1>
+<p class="updated">Free &amp; open source under the MIT license</p>
+
+<p><strong>D&amp;D 5e HP Calculator &amp; Monster Builder — Ultimate Edition</strong> (short name: <em>5e HP Forge</em>) is a free, browser-based toolkit for Dungeons &amp; Dragons 5th Edition Dungeon Masters and players. It bundles more than twenty interlocking tools into a single page: hit dice math, effective HP with resistances, CR reverse-engineering, a full PC builder, probability curves, statblock generation, encounter difficulty, an initiative tracker, Monte Carlo combat simulation and XP tracking.</p>
+
+<p>Everything runs entirely in your browser. There is no account to create, no server to talk to, and nothing to install. Your saves, theme and settings live in your browser's local storage and never leave your device — see the <a href="privacy.html">Privacy Policy</a> for the details.</p>
+
+<h2>The 20 core tools</h2>
+<div class="feature-grid">
+<div class="feature-card"><b>🧮 Calculator</b>Hit-dice expressions like <code>8d10+24</code>, batch entry, min/max/avg breakdown.</div>
+<div class="feature-card"><b>🐉 Creature Builder</b>Size-based auto dice, Con score conversion, one-click monster HP.</div>
+<div class="feature-card"><b>🛡️ Effective HP</b>Resistances, immunities, vulnerabilities, legendary resistances, regen, temp HP.</div>
+<div class="feature-card"><b>🔍 Reverse Engineer</b>Pick a target CR, get HD/Con combinations that land in the right HP band.</div>
+<div class="feature-card"><b>🧝 PC Builder</b>2014 &amp; 2024 rules, multiclass, Tough / Hill Dwarf / Draconic bonuses.</div>
+<div class="feature-card"><b>📊 Probability</b>Exact distribution histogram, single rolls and 1000-roll simulations.</div>
+<div class="feature-card"><b>📜 Statblock</b>Generate statblocks and export them as Markdown or JSON.</div>
+<div class="feature-card"><b>⚖️ Compare</b>Up to four HP configurations side by side.</div>
+<div class="feature-card"><b>🧬 Templates</b>Half-Dragon, Skeleton, Zombie, Vampire and custom transformations.</div>
+<div class="feature-card"><b>🏰 Encounter</b>XP thresholds, group multipliers, difficulty bar, action economy, HP tracker.</div>
+<div class="feature-card"><b>⚔️ Combat</b>DPR, AoE, critical hit, save DC, attack bonus and healing calculators.</div>
+<div class="feature-card"><b>🎲 Monster</b>Random monster generator, ability scores by CR, skills, lair &amp; legendary impact.</div>
+<div class="feature-card"><b>💀 PC Tools</b>Death saves, conditions, hit-dice recovery, exhaustion, spell slots, temp HP.</div>
+<div class="feature-card"><b>🎯 CR Calc</b>Full DMG p.274 Challenge Rating calculator with defensive and offensive CR.</div>
+<div class="feature-card"><b>🎯 Concentration</b>Success chances with War Caster, Resilient and multiple hits.</div>
+<div class="feature-card"><b>📅 Day Budget</b>Adventuring-day XP budgeting with a resource-drain timeline.</div>
+<div class="feature-card"><b>📊 Party Radar</b>Radar chart of DPR, AoE, healing, tankiness, utility and control.</div>
+<div class="feature-card"><b>⚡ Combat Tracker</b>Initiative order, HP bars, conditions, death saves, damage log with undo.</div>
+<div class="feature-card"><b>🎲 Monte Carlo</b>Run hundreds of combat simulations and see win rates and casualties.</div>
+<div class="feature-card"><b>📈 XP Tracker</b>Campaign XP, level-up prediction and loot/XP split calculator.</div>
+</div>
+
+<h2>Add-on modules</h2>
+<p>Three later releases layered extra modules on top of the core twenty, without touching the original tools:</p>
+<ul>
+<li><strong>v4 — DM extras:</strong> Loot Roller, Random Encounter generator, Lair &amp; Legendary action builder, and a Kill Probability calculator with exact hit/crit/mitigation math.</li>
+<li><strong>v5 — power tools:</strong> Dice Sandbox (exploding dice, keep highest/lowest), Damage vs Target, Ability Score roller, Spell DC calculator, Conditions reference, CR Estimator, Rest &amp; Recovery manager, d20 Odds with advantage/disadvantage, and an NPC Generator.</li>
+<li><strong>v6 — table &amp; export:</strong> a searchable <strong>Bestiary</strong> of 80+ SRD creatures, <strong>Export &amp; Print</strong> (Foundry VTT JSON, Roll20 JSON and paste text, printable statblock sheet), and a <strong>Settings</strong> panel with HP rounding mode and full backup/restore.</li>
+</ul>
+<p>See the <a href="changelog.html">Changelog</a> for the full history.</p>
+
+<h2>How it works</h2>
+<p>The whole application is three files — one HTML page, one stylesheet and one script — written in plain HTML5, CSS3 and vanilla JavaScript (ES2020). There are no frameworks, no bundlers, no build step and no external requests. After your first visit, your browser's cache is enough to use the site offline.</p>
+<p>State is persisted locally: an auto-save snapshot every 1.5 seconds while you type, up to 20 named save slots, the combat tracker state, XP history and your theme preference. The Settings tab can export everything as a JSON backup and restore it on any other device or browser.</p>
+
+<h2>Credits &amp; license</h2>
+<p>The rules math in this tool (hit dice averages, XP thresholds, CR bands, encounter multipliers) follows the published 5th Edition mechanics as described in the <em>Systems Reference Document (SRD 5.1)</em> released by Wizards of the Coast under the Creative Commons Attribution 4.0 International license. Monster names appearing in the Bestiary and generators are drawn from SRD content.</p>
+<p>This project is an unofficial fan tool. It is not affiliated with, endorsed or sponsored by Wizards of the Coast. <em>Dungeons &amp; Dragons</em>, <em>D&amp;D</em> and related trademarks are the property of Wizards of the Coast LLC.</p>
+<p>The site's code is released under the <a href="terms.html">MIT license</a> — fork it, mod it, run your own copy.</p>
+
+<h2>Contact</h2>
+<div class="callout info">
+<p><strong>Questions, bug reports, feature ideas?</strong></p>
+<!-- TODO: replace the placeholders below with your real contact channels -->
+<p>Email: <a href="mailto:you@example.com">you@example.com</a> (TODO: your email)</p>
+<p>GitHub: <a href="https://github.com/yourname/dnd-hp-calculator/issues">github.com/yourname/dnd-hp-calculator/issues</a> (TODO: your repo)</p>
+<p>Bugs and suggestions are welcome — include your browser, device and what you clicked.</p>
+</div>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

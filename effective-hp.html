@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Effective HP Calculator — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Convert raw monster HP into effective HP with resistances, immunities, vulnerabilities, legendary resistances and regeneration — plus survival rounds vs DPR.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/effective-hp.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Effective HP Calculator — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Convert raw monster HP into effective HP with resistances, immunities, vulnerabilities, legendary resistances and regeneration — plus survival rounds vs DPR.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>🛡️ Effective HP Calculator</h1>
+<p class="updated">Tool 3 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Raw hit points lie. A creature immune to fire shrugs off half the party's damage; a boss that auto-succeeds three saves burns resources long before it drops. The Effective HP Calculator converts paper HP into real survivability, following the same defensive-adjustment logic the Dungeon Master's Guide uses when it prices traits into Challenge Rating.</p>
+<p>Enter the base HP and the expected CR tier (CR 1–4, 5–10 or 11+), then tick the defensive traits: resistances and immunities across bludgeoning/piercing/slashing from nonmagical attacks plus ten damage types, from fire and cold to psychic and force. Each tier of defense multiplies the pool — one type ×1.25, two ×1.5, three or more ×2.0 — while any vulnerability cuts it in half. Legendary resistances, regeneration and temporary HP each add their own weight.</p>
+<p>The <strong>Damage Per Round Estimation</strong> card finishes the job: give it the DPR your players actually deal and it reports how many rounds the creature realistically survives. Together the two cards answer the classic prep question — can this boss threaten my level 9 party? — with arithmetic instead of vibes.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Resistance and immunity weighting across eleven damage types plus nonmagical B/P/S</li>
+<li>CR-tier scaling, because traits cost far more at CR 3 than CR 15</li>
+<li>Legendary resistances priced at +10, +20 or +30 per use by tier</li>
+<li>Regeneration valued at three times its per-round rate</li>
+<li>Vulnerabilities that halve the pool, not just a footnote</li>
+<li>Survival-rounds estimate against any expected party DPR</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>The engine multiplies base HP by the defense count (×1.25 / ×1.5 / ×2.0), halves it for vulnerabilities, then adds the legendary-resistance value per use, three times the regeneration rate and temporary HP flat. The result is the total damage the party must actually burn through before the monster drops.</p>
+<p>The explanation box spells out every multiplier it applied — which types were counted, which tier they landed in — so the final total is auditable line by line rather than a single opaque number.</p>
+
+<div class="callout">
+<strong>Table tip:</strong> immunity to nonmagical B/P/S is the strongest flag in the list — parties without magic weapons stall completely. Check the party's gear before giving it to a low-CR creature.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Effective HP Calculator lives inside the main calculator.</strong> Open the app and click the <strong>Effective HP</strong> tab — the third one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="cr-calculator.html">Challenge Rating Calculator</a>, <a href="combat-calculators.html">Advanced Combat Calculators</a> and <a href="combat-tracker.html">Combat Tracker</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

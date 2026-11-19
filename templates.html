@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Templates & Transformations — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Apply Half-Dragon, Skeleton, Zombie, Vampire or custom templates to any monster chassis and see the transformed HP instantly.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/templates.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Templates & Transformations — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Apply Half-Dragon, Skeleton, Zombie, Vampire or custom templates to any monster chassis and see the transformed HP instantly.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>🧬 Templates &amp; Transformations</h1>
+<p class="updated">Tool 9 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Published adventures have used monster templates for decades: take an existing creature, graft on undead or draconic features, and get a 'new' monster for a fraction of the design work. The Templates tab does the same for your table, applying classic 5e transformations to any hit-dice chassis in one click.</p>
+<p>Pick a preset and the tool rewrites the chassis deterministically, then shows the new expression and totals so nothing is hidden. <strong>Half-Dragon</strong> steps every die up one size and adds +2 HP per hit die — bigger frame, bigger breath weapon. <strong>Skeleton</strong> normalizes everything to d8s with no flat bonus, the classic reanimated chassis. <strong>Zombie</strong> adds +2 HP per hit die for its relentless durability. <strong>Vampire</strong> notes a regeneration of 20 HP per round, worth roughly +60 effective HP in a fight.</p>
+<p>The <strong>Custom</strong> option opens four dials — die-size override, hit-dice change, Constitution change and flat-bonus change — a complete kit for inventing your own bloodlines, curses and blessings. One hill giant chassis plus four templates is four distinct encounters, each mechanically sound because the HP math underneath is done properly.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Half-Dragon: dice step up one size, +2 HP per HD</li>
+<li>Skeleton: every die becomes a d8, flat bonus zeroed</li>
+<li>Zombie: +2 HP per hit die of relentless durability</li>
+<li>Vampire: regeneration 20 noted at roughly +60 effective HP</li>
+<li>Custom builder with four independent transformation dials</li>
+<li>Before/after result box showing the new expression and totals</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>Every template is a deterministic rewrite of the same four levers: die size, dice count, Constitution contribution and flat bonus. Because the transformation happens on the expression itself, the output stays a valid expression you can paste anywhere else in the toolkit — the numbers never go stale.</p>
+<p>Each result prints a note describing exactly what changed — 'Die +1 step, +2 Con per HD' for Half-Dragon, for instance — then updates the main calculator with the new expression, so the transformation is applied everywhere in the toolkit at once.</p>
+
+<div class="callout">
+<strong>Campaign trick:</strong> Skeleton and Zombie versions of one base creature make a great dungeon pair — same origin, different mechanics, zero extra prep.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Templates & Transformations lives inside the main calculator.</strong> Open the app and click the <strong>Templates</strong> tab — the ninth one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="creature-builder.html">Creature Builder</a>, <a href="compare.html">Comparison Mode</a> and <a href="effective-hp.html">Effective HP Calculator</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

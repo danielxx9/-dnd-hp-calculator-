@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probability Dashboard — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="See the real probability curve of any D&D 5e hit-dice expression: exact histogram, single rolls and 1000-roll simulations, all offline.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/probability.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Probability Dashboard — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="See the real probability curve of any D&D 5e hit-dice expression: exact histogram, single rolls and 1000-roll simulations, all offline.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>📊 Probability Dashboard</h1>
+<p class="updated">Tool 6 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Averages hide variance. Two expressions can land in the same neighborhood while one is a smooth bell curve and the other a spiky lottery. The Probability Dashboard draws the real distribution of any hit-dice expression as a histogram, so you can see which outcomes are common, which are outliers, and where the mass of the curve actually sits.</p>
+<p>For a handful of dice the distribution is computed exactly, every outcome tallied — true probabilities, not a statistical shortcut. For pools too large to enumerate, it falls back to a 5,000-roll simulation, clearly labeled as approximate. Below the chart, <strong>Roll Once</strong> samples a single instant and <strong>Simulate 1000 Rolls</strong> runs a thousand virtual rolls so you can watch the empirical results converge on the exact curve.</p>
+<p>Use it to make design decisions with confidence: is this boss's HP pool reliably scary, or sometimes trivially low? Does a reroll actually change the shape of the curve, or just shift the mean? It also makes a fine teaching aid when a player wants to know why their greatsword crit feels so swingy.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Exact probability histogram for any expression the calculator accepts</li>
+<li>Automatic fallback to a labeled 5,000-roll simulation for huge pools</li>
+<li>Single-roll sampler for instant table feel</li>
+<li>1,000-roll simulation with empirical-versus-exact comparison</li>
+<li>Canvas-drawn chart that renders fully offline</li>
+<li>Works for monster HP pools and damage expressions alike</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>The average of N dice of size M concentrates around N × (M+1) ÷ 2, but the spread shrinks as dice are added: one d20 is nearly flat, while twenty of them pile into a narrow spike around the mean. Same average, completely different reliability — and the histogram is how you see that before it surprises the table.</p>
+<p>The mean is printed above the chart, and bar heights are proportional to true probability, so genuinely rare outcomes are visibly dwarfed by the common middle of the curve — the shape does the explaining for you.</p>
+
+<div class="callout">
+<strong>Reading the chart:</strong> compare the width, not just the peak. A tall, narrow curve means dependable numbers; a low, wide one means the encounter swings on luck.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Probability Dashboard lives inside the main calculator.</strong> Open the app and click the <strong>Probability</strong> tab — the sixth one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="compare.html">Comparison Mode</a>, <a href="monte-carlo.html">Monte Carlo Combat Simulator</a> and <a href="calculator.html">Hit Dice Calculator</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

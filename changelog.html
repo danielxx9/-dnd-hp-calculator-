@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog — D&amp;D 5e HP Calculator &amp; Monster Builder</title>
+<meta name="description" content="Version history of the 5e HP Forge: 20 core tools, then the v4 DM extras, v5 power tools and v6 bestiary, export and settings modules.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/changelog.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Changelog — D&amp;D 5e HP Calculator &amp; Monster Builder">
+<meta property="og:description" content="Version history: 20 core tools, v4 DM extras, v5 power tools, v6 bestiary, export and settings.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>Changelog</h1>
+<p class="updated">Newest first · Feature releases are numbered; individual dates are not tracked</p>
+
+<div class="changelog-version">
+<div class="version-head">
+<span class="version-tag">v6 — Bestiary, Export &amp; Print, Settings</span>
+<span class="version-note">current release · additive module, no changes to existing tools</span>
+</div>
+<ul>
+<li>📚 <strong>Bestiary</strong> — searchable collection of 80+ SRD creatures with stat summaries; send any creature's HD straight to the Calculator or load its full stats.</li>
+<li>🖨️ <strong>Export &amp; Print</strong> — Foundry VTT JSON, Roll20 JSON and Roll20-friendly paste text for statblocks, plus a clean printable sheet via the browser's print dialog.</li>
+<li>⚙️ <strong>Settings</strong> — HP rounding mode (round vs. floor, stored in <code>ddhp_rounding</code>), full backup/restore of app state as JSON, and an auto-save status indicator.</li>
+<li>🖥️ <strong>Deployment packaging</strong> — static hosting files added: security headers (<code>_headers</code>), SPA fallback (<code>_redirects</code>), Wrangler config, GitHub Actions deploy workflow, README, license and editor config; strict Content-Security-Policy enforced site-wide.</li>
+</ul>
+</div>
+
+<div class="changelog-version">
+<div class="version-head">
+<span class="version-tag">v5 — Power tools (Tier 1 + Tier 2)</span>
+<span class="version-note">nine self-contained modules with their own storage</span>
+</div>
+<ul>
+<li>🎰 <strong>Dice Sandbox</strong> — keep highest/lowest, exploding dice, reroll thresholds.</li>
+<li>🗡️ <strong>Damage vs Target</strong> — apply damage through temp HP and resistance, with the resulting concentration DC.</li>
+<li>📊 <strong>Ability Scores</strong> — 4d6 drop lowest, 3d6, standard array and a point-buy reference table.</li>
+<li>✨ <strong>Spell DC</strong> — save DC and spell attack bonus with hit/save probability readouts.</li>
+<li>📖 <strong>Conditions</strong> — searchable conditions reference, including both 2014 and 2024 exhaustion ladders.</li>
+<li>⚖️ <strong>CR Estimator</strong> — quick defensive/offensive CR averaging from HP, AC, DPR and attack bonus.</li>
+<li>🏕️ <strong>Rest &amp; Recovery</strong> — short-rest hit-dice spending and long-rest rules for both rulesets.</li>
+<li>🎯 <strong>d20 Odds</strong> — success probability with advantage, disadvantage and elven accuracy.</li>
+<li>🧑 <strong>NPC Generator</strong> — name, race, role and trait/ideal/bond/flaw/hook rolls for quick table NPCs.</li>
+</ul>
+</div>
+
+<div class="changelog-version">
+<div class="version-head">
+<span class="version-tag">v4 — DM extras</span>
+<span class="version-note">first add-on module; purely additive</span>
+</div>
+<ul>
+<li>💰 <strong>Loot Roller</strong> — DMG-style treasure hoard rolling by CR tier.</li>
+<li>🎲 <strong>Random Encounter</strong> — environment-based encounter generation with twist tables.</li>
+<li>🐲 <strong>Lair &amp; Legendary</strong> — legendary and lair action block builder with Markdown export.</li>
+<li>☠️ <strong>Kill Probability</strong> — exact hit/crit/mitigation math with cumulative kill odds per round.</li>
+</ul>
+</div>
+
+<div class="changelog-version">
+<div class="version-head">
+<span class="version-tag">v1 → v3 — The core twenty</span>
+<span class="version-note">the original single-page toolkit</span>
+</div>
+<ul>
+<li>The twenty core tabs shipped and stabilised: 🧮 Calculator, 🐉 Creature Builder, 🛡️ Effective HP, 🔍 Reverse Engineer, 🧝 PC Builder, 📊 Probability, 📜 Statblock, ⚖️ Compare, 🧬 Templates, 🏰 Encounter, ⚔️ Combat, 🎲 Monster Tools, 💀 PC Tools, 🎯 CR Calc, 🎯 Concentration, 📅 Day Budget, 📊 Party Radar, ⚡ Combat Tracker, 🎲 Monte Carlo and 📈 XP Tracker.</li>
+<li>Strict dice-expression parser with loud error messages, caps (1,000 dice, d1,000 faces) and exact-vs-simulated distribution switch at 200 dice.</li>
+<li>Auto-save (1.5 s debounce), 20 named save slots, corrupted-storage recovery, shareable <code>#s=</code> links, keyboard shortcuts, dark mode and a generated web-app manifest (no service worker).</li>
+<li>Accessibility pass: WAI-ARIA tab pattern, arrow-key tab navigation, <code>aria-live</code> result regions, escaped HTML everywhere user input is rendered.</li>
+<li>Light/dark theming via CSS custom properties, mobile-first responsive layout, and a print stylesheet that strips the chrome.</li>
+</ul>
+</div>
+
+<div class="callout info">
+<p><strong>Upgrade notes:</strong> every add-on module was built to be purely additive — v4, v5 and v6 never modified the original twenty tools or their saved data. Restoring an old backup into the current version is safe; new keys (<code>ddhp_rounding</code>, <code>ddhp_xpHistory</code>) are created only when you use the features they belong to.</p>
+</div>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

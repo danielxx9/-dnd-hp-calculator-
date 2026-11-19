@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statblock Generator — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Turn your monster math into a clean, professional statblock with one-click Markdown copy and JSON export for VTTs and homebrew docs.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/statblock.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Statblock Generator — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Turn your monster math into a clean, professional statblock with one-click Markdown copy and JSON export for VTTs and homebrew docs.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>📜 Statblock Generator</h1>
+<p class="updated">Tool 7 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>A finished monster deserves a finished statblock. The Statblock Generator takes the creature you have been building — name, size and type, alignment, Armor Class, speed, and the six ability scores — and formats it as a clean, professional block that mirrors the layout of official published creatures, so anyone who has read a Monster Manual can read yours.</p>
+<p>The HP field fills itself from the hit-dice math you have already done in the other tabs, so the number on the statblock always matches the number in your calculations. Ability modifiers are derived from the scores automatically. Once the preview looks right, export it: <strong>Copy Markdown</strong> puts a paste-ready block on your clipboard for wikis, campaign notes and forum posts, and <strong>Export JSON</strong> produces structured data for virtual-tabletop tooling and version control.</p>
+<p>The generator exists because homebrew usually dies at the formatting step. The math works, the concept sings — and then it never gets written down properly. Here the write-up is automatic: fill six fields, press one button, and your creature is documented as rigorously as anything in a published book.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Live statblock preview in the familiar official layout</li>
+<li>Automatic HP line inherited from your calculations</li>
+<li>Six ability scores with automatic modifier display</li>
+<li>One-click Markdown copy for wikis, notes and forums</li>
+<li>JSON export for VTT tooling and version control</li>
+<li>SRD-style presentation readers parse at a glance</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>Ability modifiers are (score − 10) ÷ 2, rounded down — a 16 becomes +3. The HP line carries both the fixed average and its NdM±K expression, which is exactly how published statblocks present it, so your creature reads as native rather than homebrewed.</p>
+<p>The Markdown output uses bold labels and plain text that pastes cleanly into wikis, Discord and campaign-management tools, while the JSON export mirrors the same fields in machine-readable form — the one creature you designed is equally usable by a human reader and a script.</p>
+
+<div class="callout">
+<strong>Keep it terse:</strong> 'Medium humanoid, neutral' reads exactly like a published creature. Short type and alignment lines keep the block compact and professional.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Statblock Generator lives inside the main calculator.</strong> Open the app and click the <strong>Statblock</strong> tab — the seventh one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="creature-builder.html">Creature Builder</a>, <a href="monster-tools.html">Monster Design Tools</a> and <a href="encounter-builder.html">Encounter Builder</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

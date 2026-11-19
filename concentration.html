@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concentration Check Calculator — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Will the spell hold? Calculate concentration save DC and success odds with War Caster, Resilient and multi-hit simulations.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/concentration.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Concentration Check Calculator — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Will the spell hold? Calculate concentration save DC and success odds with War Caster, Resilient and multi-hit simulations.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>🎯 Concentration Check Calculator</h1>
+<p class="updated">Tool 15 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Concentration is the most fragile resource in 5e, and it breaks at the worst possible moments. This calculator tells you exactly how fragile. Enter the damage the caster just took and their Constitution modifier, and the tool computes the saving-throw DC — 10, or half the damage if that is higher — then the actual probability of holding the spell.</p>
+<p>The feat toggles are where it gets interesting. <strong>War Caster</strong> grants advantage on the save, which is worth a startling amount at low DCs; <strong>Resilient (Constitution)</strong> adds +2 that compounds with an already-solid caster stat. The multi-hit simulation prices realistic pressure: one hit of 20 damage is very different from two hits of 10, because two saves mean two chances to fail. Enter the number of hits, up to ten, and watch the odds shift.</p>
+<p>Spell level is included for context — a reminder that stakes rise with the slot. Losing concentration on a 3rd-level hold spell hurts; losing it on a 5th-level wall loses the encounter. Players can use the tool to finally settle whether War Caster is worth the feat slot, with numbers instead of forum threads.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Exact success chance for any damage input and Con modifier</li>
+<li>Automatic DC: 10 or half damage, whichever is higher</li>
+<li>War Caster advantage and Resilient (Con) modeled directly</li>
+<li>Multi-hit simulation from 1 to 10 saves in a round</li>
+<li>Spell-level context for the real cost of failure</li>
+<li>Settles the 'is War Caster worth it?' debate with numbers</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>The DC is max(10, half the damage taken), and each save is a d20 plus Constitution against it — with advantage rolling twice and keeping the higher. Multiple hits multiply: two saves with a 50% chance each hold the spell only about a quarter of the time, which is why Multiattack monsters are caster kites by design.</p>
+
+<div class="callout">
+<strong>Targeting tip:</strong> two small hits are often deadlier to concentration than one big one. If your villain needs a spell to end, aim the minion swarm at the wizard.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Concentration Check Calculator lives inside the main calculator.</strong> Open the app and click the <strong>Concentration</strong> tab — the fifteenth one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="combat-calculators.html">Advanced Combat Calculators</a>, <a href="pc-tools.html">PC & Party Tools</a> and <a href="monster-tools.html">Monster Design Tools</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

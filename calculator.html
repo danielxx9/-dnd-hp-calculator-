@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hit Dice Calculator — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Hit dice calculator for D&D 5e: paste any expression like 8d10+24 and get min, max and average HP with a full breakdown — plus batch entry for whole lists.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/calculator.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hit Dice Calculator — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Hit dice calculator for D&D 5e: paste any expression like 8d10+24 and get min, max and average HP with a full breakdown — plus batch entry for whole lists.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>🧮 Hit Dice Calculator</h1>
+<p class="updated">Tool 1 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>The Hit Dice Calculator is the heart of the toolkit. Type a hit-dice expression such as <code>8d10+24</code> or <code>15d6-5</code>, press <strong>Calculate HP</strong>, and you get the complete picture of that creature's hit points instantly. The parser reads the standard NdM±K notation used on every official D&amp;D 5e statblock, so you can copy an HP line straight out of a published adventure, paste it in, and see the numbers behind it.</p>
+<p>The result grid answers the questions that matter at the table: the fixed average a DM can use without rolling, the minimum if every die lands on a 1, and the maximum if the creature rolls beautifully. Below the grid, the breakdown shows the arithmetic step by step — how many dice, what each die contributes on average, and where the flat bonus comes from — so you can verify the math instead of trusting a black box.</p>
+<p>The <strong>Batch Multi-Entry</strong> card is the prep-night time-saver. Paste a whole list of expressions, separated by newlines, semicolons or commas, and every one is calculated in a single pass. It is the fastest way to stat a full encounter group, sanity-check a chapter's worth of homebrew creatures, or build a custom bestiary table before Sunday's session.</p>
+<h2>What you can do</h2>
+<ul>
+<li>One-click average, minimum and maximum HP for any NdM±K expression</li>
+<li>A transparent, dice-by-dice breakdown you can verify or explain to players</li>
+<li>Batch mode for newline, semicolon or comma separated lists in one pass</li>
+<li>Works with monster hit dice and player-class dice alike, d4 through d20</li>
+<li>Instant client-side results — no reload, no network, works offline</li>
+<li>Hand the same expression to the Probability Dashboard or Comparison Mode</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>For <em>N</em> dice of size <em>M</em> plus modifier <em>K</em>, the average is N × (M+1) ÷ 2 + K. A classic <code>8d10+24</code> brute therefore averages 8 × 5.5 + 24 = 68 HP — exactly the number printed in published statblocks, because that is the same convention. The minimum is N + K and the maximum is N × M + K, giving the honest floor and ceiling of the pool: 32 to 104 for that same expression. Use the average for encounter math, and the floor when you want to know how bad a bad roll really is.</p>
+
+<div class="callout">
+<strong>Prep tip:</strong> published statblocks use the fixed average, so your result should match the book exactly. If it doesn't, check the die count before blaming the tool — a swapped die size is the most common typo.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Hit Dice Calculator lives inside the main calculator.</strong> Open the app and click the <strong>Calculator</strong> tab — the first one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="creature-builder.html">Creature Builder</a>, <a href="probability.html">Probability Dashboard</a> and <a href="compare.html">Comparison Mode</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

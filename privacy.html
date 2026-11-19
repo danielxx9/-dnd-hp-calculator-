@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — D&amp;D 5e HP Calculator &amp; Monster Builder</title>
+<meta name="description" content="Privacy policy for the 5e HP Forge: no accounts, no analytics, no trackers, no cookies. Everything you enter stays in your browser's local storage.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/privacy.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacy Policy — D&amp;D 5e HP Calculator &amp; Monster Builder">
+<meta property="og:description" content="No accounts, no analytics, no trackers, no cookies. Everything you enter stays in your browser's local storage.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated: 2025 · Applies to <a href="https://dnd-hp-calculator.pages.dev">dnd-hp-calculator.pages.dev</a> and every page on this site</p>
+
+<div class="callout">
+<p><strong>Short version:</strong> this site collects nothing. No accounts, no analytics, no advertising, no cookies set by us, no data sent anywhere. Everything you type is processed in your browser and stored only on your own device. You can erase it all at any time by clearing the site's data.</p>
+</div>
+
+<h2>1. What this site collects</h2>
+<p>Nothing. The site is a static set of files served from Cloudflare Pages. It has no backend, no database and no form that submits anywhere. The JavaScript never transmits your input to any server, and there are no third-party scripts, fonts, images or requests of any kind.</p>
+
+<h2>2. What stays on your device (local storage)</h2>
+<p>To remember your work between visits, the app uses your browser's built-in <strong>localStorage</strong> — a storage area that belongs to your browser, is not accessible to other websites, and is never uploaded anywhere. The following keys are used:</p>
+<table>
+<thead>
+<tr><th>Key</th><th>What it holds</th><th>When it is written</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ddhp_lastSession</code></td><td>Auto-save snapshot of the calculator inputs (expressions, creature fields, PC builder fields, etc.).</td><td>Automatically, 1.5 s after you change any input.</td></tr>
+<tr><td><code>ddhp_saves</code></td><td>Your named save slots (up to 20), created with the 💾 Save button.</td><td>Only when you click Save.</td></tr>
+<tr><td><code>ddhp_dark</code></td><td>Your light/dark theme choice (<code>true</code> / <code>false</code>).</td><td>When you toggle the theme.</td></tr>
+<tr><td><code>ddhp_rounding</code></td><td>Your HP rounding preference from the Settings tab (round vs. floor).</td><td>When you change it in Settings.</td></tr>
+<tr><td><code>ddhp_xpHistory</code></td><td>XP entries from the XP Tracker tab.</td><td>When you add XP events.</td></tr>
+</tbody>
+</table>
+<p>All of this data stays in that browser, on that device. Clearing the site's data (or using the backup/restore controls in the app's Settings tab) removes it permanently.</p>
+
+<h2>3. Cookies</h2>
+<p>This site does not set any cookies itself. Cloudflare, which hosts the site, may use its own strictly functional cookies (such as <code>__cf_bm</code>) to protect against abuse and route your requests — this is standard for any website served through Cloudflare and is not controlled by this site. No tracking or advertising cookies are used.</p>
+
+<h2>4. Share links</h2>
+<p>The 🔗 Share button builds a link that encodes a handful of calculator fields (hit-dice expression, creature numbers, PC builder fields and similar) directly into the URL's <code>#s=…</code> fragment using base64. The link is copied to your clipboard and only leaves your device if you choose to paste and send it to someone. The fragment part of a URL is not normally sent to web servers.</p>
+
+<h2>5. Hosting and server logs</h2>
+<p>The site is hosted on Cloudflare Pages. Like any web host, Cloudflare processes standard technical request data (IP address, user agent, requested URL, timestamp) to deliver the site, defend against attacks and comply with law. This site's owner does not access, use or sell that data for any other purpose. See <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare's Privacy Policy</a> for details.</p>
+
+<h2>6. No analytics, ads or profiling</h2>
+<p>There are no analytics services, no advertising networks, no social media embeds, no fingerprinting and no cross-site tracking on this site — ever.</p>
+
+<h2>7. Your rights and controls</h2>
+<p>Because no personal data is collected or transmitted by the site, there is nothing to export, correct or delete on the server side. Everything the app knows about you is on your device, and you control it:</p>
+<ul>
+<li><strong>Delete everything:</strong> use your browser's "Clear site data" / "Clear browsing data" for this site.</li>
+<li><strong>Delete in-app:</strong> Settings tab → backup/restore and the individual clear buttons (Clear Party, Clear Monsters, Reset, etc.).</li>
+<li><strong>Take your data with you:</strong> Settings tab → export a JSON backup, then import it in any other browser or device.</li>
+</ul>
+<p>Under regulations such as the GDPR or CCPA you have rights over your personal data; since this site processes none on any server, those rights are satisfied by design — the only data involved is yours, on your machine, under your control.</p>
+
+<h2>8. Children</h2>
+<p>This site is a dice-math tool intended for general use and is not directed at children under 13. It collects no personal information from any visitor of any age.</p>
+
+<h2>9. Changes to this policy</h2>
+<p>If the site ever adds a feature that changes this picture (it currently has none planned), this page will be updated <em>before</em> that feature ships, and the "Last updated" date above will change. Material changes will also be noted on the <a href="changelog.html">Changelog</a> page.</p>
+
+<h2>10. Contact</h2>
+<!-- TODO: replace the placeholders below with your real contact channels -->
+<p>Privacy questions can go to <a href="mailto:you@example.com">you@example.com</a> (TODO: your email) or via the channels listed on the <a href="about.html">About page</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

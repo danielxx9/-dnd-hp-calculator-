@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — D&amp;D 5e HP Calculator &amp; Monster Builder</title>
+<meta name="description" content="Frequently asked questions about the 5e HP Forge: dice expression syntax, average HP math, effective HP multipliers, share links, data storage, offline use and keyboard shortcuts.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/faq.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FAQ — D&amp;D 5e HP Calculator &amp; Monster Builder">
+<meta property="og:description" content="Dice syntax, average HP math, effective HP multipliers, share links, data storage, offline use and keyboard shortcuts.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>Frequently Asked Questions</h1>
+<p class="updated">Answers grounded in how the tool actually works — no hand-waving</p>
+
+<details class="faq-item">
+<summary>How is average HP calculated?</summary>
+<div class="faq-body">
+<p>Each die contributes its midpoint value, <code>(die + 1) / 2</code>. For example, a d10 averages 5.5, so <code>8d10+24</code> is 8 × 5.5 + 24 = <strong>68</strong>. The result is rounded (half up) by default; the Settings tab can switch rounding to floor, which matches how many published statblocks are built. The full step-by-step math appears under every result.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>Do the 2014 and 2024 rulesets give different PC hit points?</summary>
+<div class="faq-body">
+<p>No. In both rulesets the fixed per-level value is the same (d6 → 4, d8 → 5, d10 → 6, d12 → 7). The one rule that matters is that only your <strong>starting class</strong> rolls — and therefore takes the maximum die — at 1st level; every multiclass level uses the fixed average. The ruleset selector exists so the tool can reflect future differences and to document your choice on the breakdown.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>What dice expressions are supported?</summary>
+<div class="faq-body">
+<p>The standard form <code>XdY</code> with optional <code>+/-</code> terms and flat bonuses: <code>8d10+24</code>, <code>15d6-5</code>, <code>2d8+1d6+3</code> all work. Spaces are ignored. Limits: at most 1,000 dice per term and die sizes from d2 up to d1,000. Malformed input (double signs, trailing <code>+</code>, letters) is rejected with a specific error message rather than a wrong answer. The v5 Dice Sandbox goes further with exploding dice, rerolls and keep-highest/lowest syntax.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>How does the Effective HP calculator work?</summary>
+<div class="faq-body">
+<p>It follows the DMG guidance for estimating defensive power: <strong>×1.25</strong> with one resistance or immunity type, <strong>×1.5</strong> with two, <strong>×2.0</strong> with three or more. Vulnerabilities halve effective HP (×0.5). Legendary Resistances add +10 per use at CR 1–4, +20 at CR 5–10 and +30 at CR 11+. Regeneration adds 3 × the per-round healing (a fight lasts roughly three rounds past the first). Temporary HP is added flat. The explanation box under the result shows every factor used.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>Where is my data stored? Do I need an account?</summary>
+<div class="faq-body">
+<p>No account, ever. Everything lives in your browser's <strong>localStorage</strong>: an auto-save snapshot (written 1.5 s after you stop typing), up to 20 named save slots from the 💾 button, your theme, your rounding preference and your XP history. None of it is ever uploaded — see the <a href="privacy.html">Privacy Policy</a> for the full key-by-key breakdown.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>How do I move my data to another device or browser?</summary>
+<div class="faq-body">
+<p>Use the <strong>⚙️ Settings</strong> tab: <em>Export backup</em> saves a JSON file with all your state; <em>Import backup</em> restores it anywhere. For a single expression, the 🔗 Share button (see below) is quicker.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>What exactly does the Share button send?</summary>
+<div class="faq-body">
+<p>It packs the current tab and the key input fields (hit-dice expression, creature builder numbers, effective HP fields, PC builder fields, probability expression) into the URL fragment as base64 — for example <code>…#s=eyJ0Ijoi…</code> — and copies the link to your clipboard. Nothing is uploaded to any server; whoever opens the link gets those fields pre-filled in <em>their</em> browser. The fragment is not part of normal HTTP requests, so it is not even sent to the host.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>Does it work offline?</summary>
+<div class="faq-body">
+<p>Yes, after your first visit. The site is entirely self-hosted — no CDNs, no fonts, no analytics — so once your browser has cached the three files, no connection is needed. There is no service worker, so offline availability depends on your browser's cache; if you need a guaranteed copy, save the page files or clone the repository and run it locally with any static server.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>Are there keyboard shortcuts?</summary>
+<div class="faq-body">
+<p>Yes, while focus is not in a text field: <strong>1–9 and 0</strong> jump to tabs 1–10, <strong>D</strong> toggles dark mode, <strong>S</strong> copies a share link, and <strong>?</strong> shows the shortcut list. Arrow keys also move through the tab bar (Home/End jump to the first/last tab).</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>Why does the probability chart sometimes say "approx"?</summary>
+<div class="faq-body">
+<p>Exact distributions are computed by convolving every die — the math grows fast, so beyond 200 dice the tool switches to a 5,000-roll Monte Carlo simulation and labels the chart accordingly. Below that threshold the histogram is mathematically exact, with the mean drawn as a dashed line.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>Is the CR calculator official?</summary>
+<div class="faq-body">
+<p>It reproduces the DMG p.274 methodology: expected HP and AC give a defensive CR, expected DPR and attack bonus (or save DC) give an offensive CR, and the average of the two — adjusted for Magic Resistance, flight, legendary and lair actions — is the final CR. Real published monsters deviate from this benchmark in both directions, so treat the result as a strong starting point rather than a verdict. The Reverse tab works the other way around: give it a CR and it suggests HD/Con combinations that land in the right HP band.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>Can I use the statblocks in Foundry VTT or Roll20?</summary>
+<div class="faq-body">
+<p>Yes. The 📜 Statblock tab exports Markdown and JSON; the 🖨️ Export &amp; Print tab (v6) additionally produces Foundry VTT JSON, Roll20 JSON and Roll20-friendly paste text, plus a clean printable sheet via your browser's print dialog.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>How do I reset everything and start fresh?</summary>
+<div class="faq-body">
+<p>Settings tab → <em>Export backup</em> first if you might want your data later. Then either clear the site's data in your browser (Settings → Privacy → Clear site data, exact wording varies by browser) or use the individual reset buttons (Clear Party, Clear Monsters, death-save reset, timeline clear). Clearing <code>ddhp_lastSession</code> removes the auto-save; clearing all five keys listed in the <a href="privacy.html">Privacy Policy</a> is a full reset.</p>
+</div>
+</details>
+
+<details class="faq-item">
+<summary>Why "effective HP" instead of just bigger numbers?</summary>
+<div class="faq-body">
+<p>Because resistances change how much damage a monster actually survives, not how much it has on paper. A CR 5 creature with 100 HP and two common resistances effectively soaks about 150 HP of the damage parties deal. Designing with effective HP (and its mirror, effective DPR) is what keeps homebrew monsters from dying in one round or outlasting the party's spell slots — the Effective HP tab makes those adjustments explicit instead of guesswork.</p>
+</div>
+</details>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

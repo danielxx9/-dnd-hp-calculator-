@@ -1,0 +1,8 @@
+# robots.txt — 5e HP Forge (dnd-hp-calculator.pages.dev)
+# All pages are public; the 404 page is excluded from indexing.
+
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://dnd-hp-calculator.pages.dev/sitemap.xml

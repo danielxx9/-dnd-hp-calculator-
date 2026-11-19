@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XP & Loot Tracker — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Track campaign XP and level-ups with a session history you can export, plus a loot and XP split calculator for end-of-session shares.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/xp-tracker.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="XP & Loot Tracker — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Track campaign XP and level-ups with a session history you can export, plus a loot and XP split calculator for end-of-session shares.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>📈 XP &amp; Loot Tracker</h1>
+<p class="updated">Tool 20 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Bookkeeping is the least heroic part of DMing, and this tab does all of it. Enter the party's current level and XP, add each session's gained XP with one click, and the tracker logs the history, shows progress toward the next level, and predicts when the level-up lands. The history is exportable, so the campaign's numeric memory survives browser cleanup and travels between devices with the rest of your backups.</p>
+<p>The <strong>Loot &amp; XP Split Calculator</strong> handles the end-of-session arithmetic before it becomes an argument. Enter total gold, total XP, party size and how many magic items dropped, and the tool divides the shares evenly and accounts for the items. Four adventurers clearing a hoard get exact numbers instead of approximations — and the haggling stays in character.</p>
+<p>Whether your campaign runs strict XP, milestones or something homebrewed, organized numbers pay off: they settle 'are we nearly there?', let you pace the next session against real progress, and reveal when the party has been stuck at level 7 for six sessions and quietly needs a rich dungeon.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Campaign XP log with per-session entries and full history</li>
+<li>Level-up prediction against the official XP thresholds</li>
+<li>Exportable history for backups and device moves</li>
+<li>Loot split by GP, XP, party size and magic-item count</li>
+<li>One-click session updates, plus a reset for new arcs</li>
+<li>Pairs with the Day Budget tab for pacing between sessions</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>Levels advance through the published XP thresholds, and the tracker reports the distance to the next gate both in XP and in sessions at your current pace — so 'two more sessions' replaces the vague feeling. The loot split divides GP and XP evenly by party size and lists the magic items separately.</p>
+<p>Because the history is plain data, it pairs naturally with the Settings tab's backup export — restore the backup on a new machine and the campaign's numbers come with it.</p>
+
+<div class="callout">
+<strong>Log it fresh:</strong> record XP right after the session while the tally is known. Reconstructed XP is how parties drift two levels away from your plans.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>XP & Loot Tracker lives inside the main calculator.</strong> Open the app and click the <strong>XP Tracker</strong> tab — the twentieth one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="day-budget.html">Adventuring Day Budget</a>, <a href="encounter-builder.html">Encounter Builder</a> and <a href="party-radar.html">Party Composition Radar</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

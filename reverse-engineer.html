@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CR Reverse Engineering — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Reverse-engineer a D&D 5e monster: pick a target CR and get hit-dice and Constitution combinations that land inside the official HP band.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/reverse-engineer.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CR Reverse Engineering — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Reverse-engineer a D&D 5e monster: pick a target CR and get hit-dice and Constitution combinations that land inside the official HP band.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>🔍 CR Reverse Engineering</h1>
+<p class="updated">Tool 4 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Most homebrew starts from the wrong end. You know you want a CR 6 swamp horror — not that it should be 9d10+18. The Reverse Engineering tool flips the workflow: choose the Challenge Rating you are designing for, optionally pick a creature size, and it suggests hit-dice combinations whose average HP lands inside the official band for that CR.</p>
+<p>Every rating from CR 0 to CR 30 is available, including the fractional 1/8, 1/4 and 1/2 tiers. Restrict the search to Medium (d8), Huge (d12) or any other hit die, or leave it open. The tool walks dice counts and Constitution modifiers, keeps every combination whose average HP fits the window, and grades each suggestion <em>Low</em>, <em>Mid</em> or <em>High</em> within the band.</p>
+<p>This is the tool that keeps homebrew honest. Instead of eyeballing 'about sixty hit points, probably fine', you start inside the band that defines the CR and spend the rest of your design budget on AC, attacks and abilities, knowing the defensive baseline is already correct.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Full range from CR 0 to CR 30, fractional tiers included</li>
+<li>Size filter from Tiny d4 to Gargantuan d20, or Any</li>
+<li>Constitution modifiers from −3 to +8 swept automatically</li>
+<li>Low / Mid / High grading inside each CR's HP band</li>
+<li>Ready-to-paste HD expressions for the Creature Builder</li>
+<li>Faster than paging through the DMG mid-session</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>Each CR has a published hit-point window — CR 1 creatures sit around 71–85 HP, CR 5 around 131–145. The tool sweeps hit-dice counts from 1 to 50 with Con modifiers from −3 to +8 for each die size, keeping every combination whose rounded average falls inside the window, sorted by how close it lands to the band's center.</p>
+<p>Suggestions print as clean, ready-to-use expressions — for example a Medium build at CR 3 comes back as 9d8+9 — formatted exactly like the HP line of a published statblock, so they paste straight into the Creature Builder or a statblock without reformatting.</p>
+
+<div class="callout">
+<strong>Pick deliberately:</strong> when several suggestions fit, choose the one whose Constitution matches the concept — a sickly caster wants low Con and more dice, a golem wants high Con and fewer.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>CR Reverse Engineering lives inside the main calculator.</strong> Open the app and click the <strong>Reverse</strong> tab — the fourth one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="creature-builder.html">Creature Builder</a>, <a href="cr-calculator.html">Challenge Rating Calculator</a> and <a href="monster-tools.html">Monster Design Tools</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

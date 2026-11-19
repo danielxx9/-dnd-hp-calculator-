@@ -1,0 +1,20 @@
+# Cloudflare Pages redirects.
+#
+# NOTE: The original SPA fallback rule (/*  /index.html  200) was removed on
+# purpose. This site is a multi-page static site (index.html + about/privacy/
+# terms/faq/changelog/404 pages), not a single-page app. With the splat rule
+# present, Cloudflare Pages serves index.html with HTTP 200 for EVERY unknown
+# path, which means the custom 404.html page can never be shown and search
+# engines index soft-404 duplicates.
+#
+# With no redirect rules here, Cloudflare Pages automatically:
+#   - serves each real file for its own path (e.g. /privacy.html),
+#   - serves 404.html with a proper HTTP 404 status for unknown paths,
+#   - serves /index.html for "/" (the default index document).
+#
+# If you ever want pretty extension-less URLs, you can add rules like:
+#   /about     /about.html    200
+#   /privacy   /privacy.html  200
+#   /terms     /terms.html    200
+#   /faq       /faq.html      200
+#   /changelog /changelog.html 200

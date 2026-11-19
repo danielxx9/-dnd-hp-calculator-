@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Combat Calculators — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Six D&D 5e combat calculators in one tab: DPR, AoE spells, critical hits, save DC, attack bonus and healing — with from-CR auto-fill.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/combat-calculators.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Advanced Combat Calculators — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Six D&D 5e combat calculators in one tab: DPR, AoE spells, critical hits, save DC, attack bonus and healing — with from-CR auto-fill.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>⚔️ Advanced Combat Calculators</h1>
+<p class="updated">Tool 11 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Six precision calculators share this tab, covering every recurring arithmetic headache at the table. The <strong>Damage Per Round</strong> calculator models a full attack routine — attacks per round, damage dice, modifier, attack bonus, target AC and crit dice — and reports expected damage with hit chance priced in. The <strong>AoE</strong> calculator handles spells like fireball: damage dice, save DC, average save bonus, target count and a resistance rate.</p>
+<p>The <strong>Critical Hit</strong> calculator supports expanded crit ranges for champions and their 19–20s. The <strong>Save DC</strong> and <strong>Attack Bonus</strong> calculators each offer a from-CR mode that fills in the value a creature of that rating is expected to have — instant calibration for homebrew. The <strong>Healing</strong> calculator handles cure spells against conscious, downed, dying or dead targets, including the rule details that matter when someone is at 0 HP.</p>
+<p>Together they replace the scrap-paper math behind every homebrew monster and every 'can I actually kill it this turn?' pause. The defaults are preloaded with typical values, so you can experiment the moment the tab opens.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Full DPR with hit chance, target AC and crit dice included</li>
+<li>AoE damage with save DC, save bonus and target count</li>
+<li>Critical-hit math supporting 19–20 and 18–20 crit ranges</li>
+<li>Save DC and attack bonus with auto-fill from CR</li>
+<li>Healing math for conscious, downed, dying and dead targets</li>
+<li>Six tools on one tab — no juggling mid-session</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>Hit chance is (21 + attack bonus − AC) ÷ 20, clamped to the 5–95% extremes, and a crit adds the crit dice once more. The save-DC baseline is 8 + proficiency + ability modifier, and the from-CR modes pull the expected values straight from the monster-creation tables.</p>
+<p>Every result is printed as plain arithmetic rather than a bare number, so a bad input — an AC typed as 51, a dice string with a typo — is visible before it silently skews the plan.</p>
+
+<div class="callout">
+<strong>Homebrew shortcut:</strong> use the from-CR modes to pick an expected attack bonus and DC first, then design the monster's attacks to match — offense stays consistent with the rating.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Advanced Combat Calculators lives inside the main calculator.</strong> Open the app and click the <strong>Combat</strong> tab — the eleventh one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="cr-calculator.html">Challenge Rating Calculator</a>, <a href="concentration.html">Concentration Check Calculator</a> and <a href="effective-hp.html">Effective HP Calculator</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

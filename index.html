@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D&D 5e HP Calculator &amp; Monster Builder — Ultimate Edition</title>
+<meta name="description" content="Free D&amp;D 5e hit point calculator: hit dice math, effective HP with resistances, CR reverse-engineering, PC builder, probability curves, statblocks, encounter and initiative tracking.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="D&amp;D 5e HP Calculator &amp; Monster Builder">
+<meta property="og:description" content="20 DM tools in one page: HP math, effective HP, CR calculator, probability curves, statblock generator, encounter and initiative trackers. Works offline.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="5e HP Forge">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header>
+<h1>⚔️ D&D 5e Ultimate HP Calculator & Monster Builder</h1>
+<div class="header-buttons">
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+<button id="btnSave" class="small" type="button" aria-label="Save current state">💾 Save</button>
+<button id="btnLoad" class="small" type="button" aria-label="Load a saved state">📂 Load</button>
+<button id="btnShare" class="small no-print" type="button" aria-label="Copy a shareable link to the current state">🔗 Share</button>
+<button id="btnPrint" class="small no-print" type="button" aria-label="Print this page">🖨️ Print</button>
+</div>
+</header>
+<nav class="tab-nav" role="tablist" aria-label="Tool sections">
+<button class="tab-btn active" role="tab" id="btn-tab-calculator" aria-controls="tab-calculator" aria-selected="true" tabindex="0" data-tab="tab-calculator">🧮 Calculator</button>
+<button class="tab-btn" role="tab" id="btn-tab-creature" aria-controls="tab-creature" aria-selected="false" tabindex="-1" data-tab="tab-creature">🐉 Creature</button>
+<button class="tab-btn" role="tab" id="btn-tab-effective" aria-controls="tab-effective" aria-selected="false" tabindex="-1" data-tab="tab-effective">🛡️ Effective HP</button>
+<button class="tab-btn" role="tab" id="btn-tab-reverse" aria-controls="tab-reverse" aria-selected="false" tabindex="-1" data-tab="tab-reverse">🔍 Reverse</button>
+<button class="tab-btn" role="tab" id="btn-tab-pc" aria-controls="tab-pc" aria-selected="false" tabindex="-1" data-tab="tab-pc">🧝 PC Builder</button>
+<button class="tab-btn" role="tab" id="btn-tab-probability" aria-controls="tab-probability" aria-selected="false" tabindex="-1" data-tab="tab-probability">📊 Probability</button>
+<button class="tab-btn" role="tab" id="btn-tab-statblock" aria-controls="tab-statblock" aria-selected="false" tabindex="-1" data-tab="tab-statblock">📜 Statblock</button>
+<button class="tab-btn" role="tab" id="btn-tab-compare" aria-controls="tab-compare" aria-selected="false" tabindex="-1" data-tab="tab-compare">⚖️ Compare</button>
+<button class="tab-btn" role="tab" id="btn-tab-templates" aria-controls="tab-templates" aria-selected="false" tabindex="-1" data-tab="tab-templates">🧬 Templates</button>
+<button class="tab-btn" role="tab" id="btn-tab-encounter" aria-controls="tab-encounter" aria-selected="false" tabindex="-1" data-tab="tab-encounter">🏰 Encounter</button>
+<button class="tab-btn" role="tab" id="btn-tab-combat" aria-controls="tab-combat" aria-selected="false" tabindex="-1" data-tab="tab-combat">⚔️ Combat</button>
+<button class="tab-btn" role="tab" id="btn-tab-monster-tools" aria-controls="tab-monster-tools" aria-selected="false" tabindex="-1" data-tab="tab-monster-tools">🎲 Monster</button>
+<button class="tab-btn" role="tab" id="btn-tab-pc-tools" aria-controls="tab-pc-tools" aria-selected="false" tabindex="-1" data-tab="tab-pc-tools">💀 PC Tools</button>
+<button class="tab-btn" role="tab" id="btn-tab-cr-calc" aria-controls="tab-cr-calc" aria-selected="false" tabindex="-1" data-tab="tab-cr-calc">🎯 CR Calc</button>
+<button class="tab-btn" role="tab" id="btn-tab-concentration" aria-controls="tab-concentration" aria-selected="false" tabindex="-1" data-tab="tab-concentration">🎯 Concentration</button>
+<button class="tab-btn" role="tab" id="btn-tab-day-budget" aria-controls="tab-day-budget" aria-selected="false" tabindex="-1" data-tab="tab-day-budget">📅 Day Budget</button>
+<button class="tab-btn" role="tab" id="btn-tab-party-radar" aria-controls="tab-party-radar" aria-selected="false" tabindex="-1" data-tab="tab-party-radar">📊 Party Radar</button>
+<button class="tab-btn" role="tab" id="btn-tab-initiative" aria-controls="tab-initiative" aria-selected="false" tabindex="-1" data-tab="tab-initiative">⚡ Combat Tracker</button>
+<button class="tab-btn" role="tab" id="btn-tab-monte-carlo" aria-controls="tab-monte-carlo" aria-selected="false" tabindex="-1" data-tab="tab-monte-carlo">🎲 Monte Carlo</button>
+<button class="tab-btn" role="tab" id="btn-tab-xp-tracker" aria-controls="tab-xp-tracker" aria-selected="false" tabindex="-1" data-tab="tab-xp-tracker">📈 XP Tracker</button>
+</nav>
+
+<!-- TAB 1: Calculator -->
+<section class="tab-panel active" id="tab-calculator" role="tabpanel" aria-labelledby="btn-tab-calculator" tabindex="0">
+<div class="card">
+<h3>Hit Dice Expression</h3>
+<div class="input-group">
+<label for="hdExpression">Enter HD expression (e.g., <code>8d10+24</code>)</label>
+<input type="text" id="hdExpression" placeholder="8d10+24" value="8d10+24">
+</div>
+<button class="primary" id="btnCalculate">Calculate HP</button>
+<div class="result-grid" id="resultGrid" aria-live="polite"></div>
+<div class="breakdown" id="breakdown" aria-live="polite"></div>
+</div>
+<div class="card">
+<h3>📋 Batch Multi-Entry</h3>
+<div class="input-group">
+<label for="batchInput">Multiple expressions (newlines, semicolons, or commas)</label>
+<textarea id="batchInput" placeholder="8d10+24&#10;15d6-5" rows="4"></textarea>
+</div>
+<button class="primary" id="btnBatchCalculate">Calculate All</button>
+<div id="batchResults" aria-live="polite"></div>
+</div>
+</section>
+
+<!-- TAB 2: Creature Builder -->
+<section class="tab-panel" id="tab-creature" role="tabpanel" aria-labelledby="btn-tab-creature" tabindex="0">
+<div class="card">
+<h3>🐉 Creature Size Auto Dice & Quick Builder</h3>
+<div class="input-row">
+<div class="input-group"><label>Size</label>
+<select id="creatureSize"><option value="d4">Tiny (d4)</option><option value="d6">Small (d6)</option><option value="d8" selected>Medium (d8)</option><option value="d10">Large (d10)</option><option value="d12">Huge (d12)</option><option value="d20">Gargantuan (d20)</option></select>
+</div>
+<div class="input-group"><label>Number of HD</label><input type="number" id="creatureNumHD" value="8" min="1" max="99"></div>
+<div class="input-group"><label>Constitution Modifier</label><input type="number" id="creatureConMod" value="3" min="-5" max="10"></div>
+<div class="input-group"><label>Flat Bonus</label><input type="number" id="creatureFlatBonus" value="0"></div>
+</div>
+<div class="input-group" style="margin-top:8px;">
+<label>Or Constitution Score</label>
+<input type="number" id="creatureConScore" placeholder="e.g., 16" min="1" max="30" style="max-width:150px;">
+<button class="small" id="btnConScore" style="margin-left:8px;">Set from Score</button>
+</div>
+<button class="primary" id="btnBuildCreature">Build & Calculate</button>
+<div class="result-grid" id="creatureResultGrid" aria-live="polite"></div>
+<div class="breakdown" id="creatureBreakdown" aria-live="polite"></div>
+</div>
+</section>
+
+<!-- TAB 3: Effective HP -->
+<section class="tab-panel" id="tab-effective" role="tabpanel" aria-labelledby="btn-tab-effective" tabindex="0">
+<div class="card">
+<h3>🛡️ Effective HP Calculator</h3>
+<div class="input-row">
+<div class="input-group"><label>Base HP</label><input type="number" id="effBaseHP" value="100" min="1"></div>
+<div class="input-group"><label>Expected CR</label>
+<select id="effCR"><option value="1">CR 1–4 (+10/use)</option><option value="5" selected>CR 5–10 (+20/use)</option><option value="11">CR 11+ (+30/use)</option></select>
+</div>
+</div>
+<h4>Damage Resistances</h4>
+<div class="checkbox-group" id="resistancesGroup">
+<label><input type="checkbox" data-type="bps-nonmagical"> B/P/S (nonmagical)</label>
+<label><input type="checkbox" data-type="fire"> Fire</label>
+<label><input type="checkbox" data-type="cold"> Cold</label>
+<label><input type="checkbox" data-type="lightning"> Lightning</label>
+<label><input type="checkbox" data-type="acid"> Acid</label>
+<label><input type="checkbox" data-type="poison"> Poison</label>
+<label><input type="checkbox" data-type="psychic"> Psychic</label>
+<label><input type="checkbox" data-type="necrotic"> Necrotic</label>
+<label><input type="checkbox" data-type="radiant"> Radiant</label>
+<label><input type="checkbox" data-type="force"> Force</label>
+<label><input type="checkbox" data-type="thunder"> Thunder</label>
+<label><input type="checkbox" data-type="all-magical"> All Magical</label>
+</div>
+<h4>Damage Immunities</h4>
+<div class="checkbox-group" id="immunitiesGroup">
+<label><input type="checkbox" data-type="bps-nonmagical"> B/P/S (nonmagical)</label>
+<label><input type="checkbox" data-type="fire"> Fire</label>
+<label><input type="checkbox" data-type="cold"> Cold</label>
+<label><input type="checkbox" data-type="lightning"> Lightning</label>
+<label><input type="checkbox" data-type="acid"> Acid</label>
+<label><input type="checkbox" data-type="poison"> Poison</label>
+<label><input type="checkbox" data-type="psychic"> Psychic</label>
+<label><input type="checkbox" data-type="necrotic"> Necrotic</label>
+<label><input type="checkbox" data-type="radiant"> Radiant</label>
+<label><input type="checkbox" data-type="force"> Force</label>
+<label><input type="checkbox" data-type="thunder"> Thunder</label>
+<label><input type="checkbox" data-type="all-magical"> All Magical</label>
+</div>
+<h4>Vulnerabilities</h4>
+<div class="checkbox-group" id="vulnerabilitiesGroup">
+<label><input type="checkbox" data-type="fire"> Fire</label>
+<label><input type="checkbox" data-type="cold"> Cold</label>
+<label><input type="checkbox" data-type="lightning"> Lightning</label>
+<label><input type="checkbox" data-type="acid"> Acid</label>
+<label><input type="checkbox" data-type="radiant"> Radiant</label>
+<label><input type="checkbox" data-type="necrotic"> Necrotic</label>
+<label><input type="checkbox" data-type="thunder"> Thunder</label>
+<label><input type="checkbox" data-type="bludgeoning"> Bludgeoning</label>
+</div>
+<div class="input-row" style="margin-top:10px;">
+<div class="input-group"><label>Legendary Resistances</label><input type="number" id="effLegendaryResist" value="0" min="0" max="10"></div>
+<div class="input-group"><label>Regeneration (HP/round)</label><input type="number" id="effRegen" value="0" min="0"></div>
+<div class="input-group"><label>Temporary HP</label><input type="number" id="effTempHP" value="0" min="0"></div>
+</div>
+<button class="primary" id="btnCalcEffective">Calculate Effective HP</button>
+<div class="result-grid" id="effResultGrid" aria-live="polite"></div>
+<div class="highlight-box" id="effExplanation"></div>
+</div>
+<div class="card">
+<h3>⏱️ Damage Per Round Estimation</h3>
+<div class="input-row">
+<div class="input-group"><label>Expected DPR</label><input type="number" id="dprInput" value="30" min="1"></div>
+</div>
+<button class="primary" id="btnCalcDPR">Estimate Survival</button>
+<div id="dprResult" aria-live="polite" class="highlight-box" style="margin-top:8px;"></div>
+</div>
+</section>
+
+<!-- TAB 4: Reverse Engineer -->
+<section class="tab-panel" id="tab-reverse" role="tabpanel" aria-labelledby="btn-tab-reverse" tabindex="0">
+<div class="card">
+<h3>🔍 Reverse Engineering: Desired CR → HD Suggestions</h3>
+<div class="input-row">
+<div class="input-group"><label>Target CR</label>
+<select id="revTargetCR">
+<option value="0">CR 0</option><option value="0.125">CR 1/8</option><option value="0.25">CR 1/4</option>
+<option value="0.5">CR 1/2</option><option value="1">CR 1</option><option value="2">CR 2</option>
+<option value="3">CR 3</option><option value="4">CR 4</option><option value="5" selected>CR 5</option>
+<option value="6">CR 6</option><option value="7">CR 7</option><option value="8">CR 8</option>
+<option value="9">CR 9</option><option value="10">CR 10</option><option value="11">CR 11</option>
+<option value="12">CR 12</option><option value="13">CR 13</option><option value="14">CR 14</option>
+<option value="15">CR 15</option><option value="16">CR 16</option><option value="17">CR 17</option>
+<option value="18">CR 18</option><option value="19">CR 19</option><option value="20">CR 20</option>
+<option value="21">CR 21</option><option value="22">CR 22</option><option value="23">CR 23</option>
+<option value="24">CR 24</option><option value="25">CR 25</option><option value="26">CR 26</option>
+<option value="27">CR 27</option><option value="28">CR 28</option><option value="29">CR 29</option>
+<option value="30">CR 30</option>
+</select>
+</div>
+<div class="input-group"><label>Preferred Size</label>
+<select id="revSize"><option value="any">Any</option><option value="d4">Tiny (d4)</option><option value="d6">Small (d6)</option><option value="d8" selected>Medium (d8)</option><option value="d10">Large (d10)</option><option value="d12">Huge (d12)</option><option value="d20">Gargantuan (d20)</option></select>
+</div>
+</div>
+<button class="primary" id="btnReverse">Suggest HD Combinations</button>
+<div id="reverseResults" aria-live="polite" style="margin-top:12px;"></div>
+</div>
+</section>
+
+<!-- TAB 5: PC Builder -->
+<section class="tab-panel" id="tab-pc" role="tabpanel" aria-labelledby="btn-tab-pc" tabindex="0">
+<div class="card">
+<h3>🧝 PC Hit Points (Full Character Builder)</h3>
+<div class="input-row">
+<div class="input-group"><label>Ruleset</label>
+<select id="pcRuleset"><option value="2024" selected>2024 Rules</option><option value="2014">2014 Rules</option></select>
+</div>
+<div class="input-group"><label>Constitution Modifier</label><input type="number" id="pcConMod" value="2" min="-5" max="10"></div>
+</div>
+<div id="pcClasses">
+<div class="pc-class-row input-row" style="margin-bottom:8px;">
+<select class="pc-class-select">
+<option value="d12">Barbarian (d12)</option><option value="d10">Fighter (d10)</option>
+<option value="d10">Paladin (d10)</option><option value="d10">Ranger (d10)</option>
+<option value="d8" selected>Monk (d8)</option><option value="d8">Rogue (d8)</option>
+<option value="d8">Bard (d8)</option><option value="d8">Cleric (d8)</option>
+<option value="d8">Druid (d8)</option><option value="d8">Warlock (d8)</option>
+<option value="d8">Artificer (d8)</option><option value="d6">Wizard (d6)</option>
+<option value="d6">Sorcerer (d6)</option>
+</select>
+<input type="number" class="pc-levels" value="5" min="1" max="20">
+<button class="small pc-remove-class" style="flex:0 0 auto;">✕</button>
+</div>
+</div>
+<button class="small" id="btnAddClass" style="margin-bottom:10px;">+ Add Class</button>
+<h4>Feats & Racial Bonuses</h4>
+<div class="checkbox-group" style="margin-bottom:8px;">
+<label><input type="checkbox" id="pcTough"> Tough (+2 HP/level)</label>
+<label><input type="checkbox" id="pcHillDwarf"> Hill Dwarf (+1 HP/level)</label>
+<label><input type="checkbox" id="pcDraconic"> Draconic (+1 HP/level)</label>
+</div>
+<div class="input-group"><label>Custom Bonus per Level</label><input type="number" id="pcCustomBonus" value="0" min="0" max="20" style="max-width:120px;"></div>
+<button class="primary" id="btnCalcPC">Calculate PC HP</button>
+<div class="result-grid" id="pcResultGrid" aria-live="polite"></div>
+<details style="margin-top:10px;">
+<summary style="cursor:pointer;font-weight:600;color:var(--accent);">Level-by-Level Breakdown</summary>
+<div id="pcBreakdown" aria-live="polite" class="breakdown" style="margin-top:8px;"></div>
+</details>
+</div>
+</section>
+
+<!-- TAB 6: Probability -->
+<section class="tab-panel" id="tab-probability" role="tabpanel" aria-labelledby="btn-tab-probability" tabindex="0">
+<div class="card">
+<h3>📊 Probability Dashboard</h3>
+<div class="input-group"><label>HD Expression</label><input type="text" id="probExpression" value="8d10+24"></div>
+<button class="primary" id="btnCalcProb">Generate Chart</button>
+<canvas id="probCanvas" width="700" height="350" style="margin-top:10px;"></canvas>
+<div class="input-row" style="margin-top:10px;">
+<button id="btnRollOnce">🎲 Roll Once</button>
+<button id="btnRollMany">📊 Simulate 1000 Rolls</button>
+</div>
+<div id="rollResult" aria-live="polite" class="highlight-box" style="margin-top:8px;"></div>
+<div id="simResult" aria-live="polite" class="highlight-box" style="margin-top:4px;"></div>
+</div>
+</section>
+
+<!-- TAB 7: Statblock -->
+<section class="tab-panel" id="tab-statblock" role="tabpanel" aria-labelledby="btn-tab-statblock" tabindex="0">
+<div class="card">
+<h3>📜 Statblock Generator & Export</h3>
+<div class="input-row">
+<div class="input-group"><label>Name</label><input type="text" id="sbName" value="Custom Monster"></div>
+<div class="input-group"><label>Size/Type</label><input type="text" id="sbSizeType" value="Medium humanoid"></div>
+<div class="input-group"><label>Alignment</label><input type="text" id="sbAlign" value="neutral"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>AC</label><input type="number" id="sbAC" value="15" min="1"></div>
+<div class="input-group"><label>Speed</label><input type="text" id="sbSpeed" value="30 ft."></div>
+<div class="input-group"><label>HP (auto-filled)</label><input type="text" id="sbHP" value="" readonly></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>STR</label><input type="number" id="sbSTR" value="16" min="1" max="30"></div>
+<div class="input-group"><label>DEX</label><input type="number" id="sbDEX" value="14" min="1" max="30"></div>
+<div class="input-group"><label>CON</label><input type="number" id="sbCON" value="16" min="1" max="30"></div>
+<div class="input-group"><label>INT</label><input type="number" id="sbINT" value="10" min="1" max="30"></div>
+<div class="input-group"><label>WIS</label><input type="number" id="sbWIS" value="12" min="1" max="30"></div>
+<div class="input-group"><label>CHA</label><input type="number" id="sbCHA" value="8" min="1" max="30"></div>
+</div>
+<button class="primary" id="btnGenerateStatblock">Generate Statblock</button>
+<button id="btnCopyStatblock" style="margin-left:6px;">📋 Copy Markdown</button>
+<button id="btnExportJSON" style="margin-left:6px;">📦 Export JSON</button>
+<div id="statblockPreview" style="margin-top:14px;"></div>
+</div>
+</section>
+
+<!-- TAB 8: Compare -->
+<section class="tab-panel" id="tab-compare" role="tabpanel" aria-labelledby="btn-tab-compare" tabindex="0">
+<div class="card">
+<h3>⚖️ Comparison Mode (Up to 4 Configurations)</h3>
+<div class="compare-grid" id="compareInputs">
+<div class="compare-slot"><label>Config 1</label><input type="text" class="compare-expr" value="8d10+24"></div>
+<div class="compare-slot"><label>Config 2</label><input type="text" class="compare-expr" value="15d6-5"></div>
+<div class="compare-slot"><label>Config 3</label><input type="text" class="compare-expr" placeholder="optional"></div>
+<div class="compare-slot"><label>Config 4</label><input type="text" class="compare-expr" placeholder="optional"></div>
+</div>
+<button class="primary" id="btnCompare">Compare</button>
+<div id="compareResults" aria-live="polite" style="margin-top:12px;"></div>
+</div>
+</section>
+
+<!-- TAB 9: Templates -->
+<section class="tab-panel" id="tab-templates" role="tabpanel" aria-labelledby="btn-tab-templates" tabindex="0">
+<div class="card">
+<h3>🧬 Templates & Transformations</h3>
+<div class="input-row">
+<select id="templateSelect">
+<option value="half-dragon">Half-Dragon</option>
+<option value="skeleton">Skeleton</option>
+<option value="zombie">Zombie</option>
+<option value="vampire">Vampire</option>
+<option value="custom">Custom Template...</option>
+</select>
+<button class="primary" id="btnApplyTemplate">Apply Template</button>
+</div>
+<div id="customTemplateFields" style="display:none;margin-top:10px;" class="input-row">
+<div class="input-group"><label>Die Size Override</label>
+<select id="custDieSize"><option value="">Keep</option><option value="d4">d4</option><option value="d6">d6</option><option value="d8">d8</option><option value="d10">d10</option><option value="d12">d12</option><option value="d20">d20</option></select>
+</div>
+<div class="input-group"><label>HD Count Change</label><input type="number" id="custHDDelta" value="0"></div>
+<div class="input-group"><label>Con Mod Change</label><input type="number" id="custConDelta" value="0"></div>
+<div class="input-group"><label>Flat Bonus Change</label><input type="number" id="custFlatDelta" value="0"></div>
+</div>
+<div class="highlight-box" id="templateResult" aria-live="polite" style="margin-top:10px;"></div>
+</div>
+</section>
+
+<!-- TAB 10: Encounter -->
+<section class="tab-panel" id="tab-encounter" role="tabpanel" aria-labelledby="btn-tab-encounter" tabindex="0">
+<div class="card">
+<h3>🏰 Encounter Builder & Difficulty Calculator</h3>
+<h4>👥 Party Composition</h4>
+<div id="partyList"></div>
+<div class="input-row" style="margin-top:8px;">
+<button class="small" id="btnAddPC">+ Add PC</button>
+<button class="small" id="btnQuickParty">⚡ Quick Party (4 × Lv 3)</button>
+<button class="small" id="btnClearParty">🗑️ Clear Party</button>
+</div>
+<h4 style="margin-top:16px;">👹 Monsters</h4>
+<div id="monsterList"></div>
+<div class="input-row" style="margin-top:8px;">
+<button class="small" id="btnAddMonster">+ Add Monster</button>
+<button class="small" id="btnClearMonsters">🗑️ Clear Monsters</button>
+</div>
+<button class="primary" id="btnCalcEncounter" style="margin-top:12px;">Calculate Encounter</button>
+<div class="result-grid" id="encResultGrid" aria-live="polite"></div>
+<h4 style="margin-top:12px;">Difficulty Spectrum</h4>
+<div class="difficulty-bar" id="difficultyBar"></div>
+<div id="difficultyVerdict" class="highlight-box"></div>
+<h4 style="margin-top:14px;">⚖️ Action Economy</h4>
+<div id="actionEconomy"></div>
+</div>
+<div class="card">
+<h3>📊 Multi-Creature HP Tracker</h3>
+<div id="hpTrackerList"></div>
+<button class="small" id="btnRefreshTracker" style="margin-top:8px;">🔄 Refresh from Encounter</button>
+</div>
+</section>
+
+<!-- TAB 11: Combat -->
+<section class="tab-panel" id="tab-combat" role="tabpanel" aria-labelledby="btn-tab-combat" tabindex="0">
+<div class="card">
+<h3>⚔️ Advanced Combat Calculators</h3>
+<div class="calc-grid">
+<div class="calc-box">
+<h4>🗡️ Damage Per Round (DPR)</h4>
+<div class="input-group"><label>Attacks per Round</label><input type="number" id="dprAttacks" value="2" min="1" max="20"></div>
+<div class="input-row">
+<div class="input-group"><label>Damage Dice</label><input type="text" id="dprDice" value="2d6"></div>
+<div class="input-group"><label>Damage Modifier</label><input type="number" id="dprMod" value="5"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Attack Bonus</label><input type="number" id="dprAtkBonus" value="7"></div>
+<div class="input-group"><label>Target AC</label><input type="number" id="dprTargetAC" value="15"></div>
+</div>
+<div class="input-group"><label>Crit Die</label><input type="text" id="dprCritDice" value="2d6"></div>
+<button class="primary" id="btnCalcDPRFull">Calculate DPR</button>
+<div id="dprFullResult" aria-live="polite" class="highlight-box" style="margin-top:8px;"></div>
+</div>
+<div class="calc-box">
+<h4>💥 Area of Effect (AoE)</h4>
+<div class="input-group"><label>AoE Damage Dice</label><input type="text" id="aoeDice" value="8d6"></div>
+<div class="input-row">
+<div class="input-group"><label>Save DC</label><input type="number" id="aoeDC" value="15"></div>
+<div class="input-group"><label>Avg Save Bonus</label><input type="number" id="aoeSave" value="2"></div>
+</div>
+<div class="input-group"><label>Number of Targets</label><input type="number" id="aoeTargets" value="4" min="1" max="50"></div>
+<div class="input-group"><label>Resistance Rate</label>
+<select id="aoeDmgType"><option value="0">None</option><option value="0.25">25%</option><option value="0.5" selected>50%</option><option value="0.75">75%</option></select>
+</div>
+<button class="primary" id="btnCalcAoE">Calculate AoE</button>
+<div id="aoeResult" aria-live="polite" class="highlight-box" style="margin-top:8px;"></div>
+</div>
+<div class="calc-box">
+<h4>🎯 Critical Hit Calculator</h4>
+<div class="input-row">
+<div class="input-group"><label>Normal Damage Dice</label><input type="text" id="critDice" value="2d6+4"></div>
+<div class="input-group"><label>Crit Range</label>
+<select id="critRange"><option value="20" selected>Natural 20 (5%)</option><option value="19">19-20 (10%)</option><option value="18">18-20 (15%)</option></select>
+</div>
+</div>
+<div class="input-group"><label>Crit Bonus Dice</label><input type="text" id="critBonusDice" value="2d6"></div>
+<button class="primary" id="btnCalcCrit">Calculate Crit Damage</button>
+<div id="critResult" aria-live="polite" class="highlight-box" style="margin-top:8px;"></div>
+</div>
+<div class="calc-box">
+<h4>🎲 Save DC Calculator</h4>
+<div class="input-row">
+<div class="input-group"><label>Key Ability</label><input type="number" id="dcAbility" value="16" min="1" max="30"></div>
+<div class="input-group"><label>Proficiency Bonus</label><input type="number" id="dcProf" value="3" min="2" max="9"></div>
+</div>
+<div class="input-group"><label>Or auto-calc from CR</label>
+<select id="dcFromCR">
+<option value="">-- Select CR --</option>
+<option value="0">CR 0</option><option value="0.125">CR 1/8</option><option value="0.25">CR 1/4</option>
+<option value="0.5">CR 1/2</option><option value="1">CR 1</option><option value="2">CR 2</option>
+<option value="3">CR 3</option><option value="4">CR 4</option><option value="5">CR 5</option>
+<option value="6">CR 6</option><option value="7">CR 7</option><option value="8">CR 8</option>
+<option value="9">CR 9</option><option value="10">CR 10</option><option value="11">CR 11</option>
+<option value="12">CR 12</option><option value="13">CR 13</option><option value="14">CR 14</option>
+<option value="15">CR 15</option><option value="16">CR 16</option><option value="17">CR 17</option>
+<option value="18">CR 18</option><option value="19">CR 19</option><option value="20">CR 20</option>
+<option value="21">CR 21</option><option value="22">CR 22</option><option value="23">CR 23</option>
+<option value="24">CR 24</option><option value="25">CR 25</option><option value="26">CR 26</option>
+<option value="27">CR 27</option><option value="28">CR 28</option><option value="29">CR 29</option>
+<option value="30">CR 30</option>
+</select>
+</div>
+<button class="primary" id="btnCalcDC">Calculate Save DC</button>
+<div id="dcResult" aria-live="polite" class="highlight-box" style="margin-top:8px;"></div>
+</div>
+<div class="calc-box">
+<h4>🏹 Attack Bonus Calculator</h4>
+<div class="input-row">
+<div class="input-group"><label>Ability Modifier</label><input type="number" id="atkAbility" value="4" min="-5" max="15"></div>
+<div class="input-group"><label>Proficiency Bonus</label><input type="number" id="atkProf" value="3" min="2" max="9"></div>
+</div>
+<div class="input-group"><label>Or auto-calc from CR</label>
+<select id="atkFromCR">
+<option value="">-- Select CR --</option>
+<option value="0">CR 0</option><option value="0.125">CR 1/8</option><option value="0.25">CR 1/4</option>
+<option value="0.5">CR 1/2</option><option value="1">CR 1</option><option value="2">CR 2</option>
+<option value="3">CR 3</option><option value="4">CR 4</option><option value="5">CR 5</option>
+<option value="6">CR 6</option><option value="7">CR 7</option><option value="8">CR 8</option>
+<option value="9">CR 9</option><option value="10">CR 10</option><option value="11">CR 11</option>
+<option value="12">CR 12</option><option value="13">CR 13</option><option value="14">CR 14</option>
+<option value="15">CR 15</option><option value="16">CR 16</option><option value="17">CR 17</option>
+<option value="18">CR 18</option><option value="19">CR 19</option><option value="20">CR 20</option>
+<option value="21">CR 21</option><option value="22">CR 22</option><option value="23">CR 23</option>
+<option value="24">CR 24</option><option value="25">CR 25</option><option value="26">CR 26</option>
+<option value="27">CR 27</option><option value="28">CR 28</option><option value="29">CR 29</option>
+<option value="30">CR 30</option>
+</select>
+</div>
+<button class="primary" id="btnCalcAtk">Calculate Attack Bonus</button>
+<div id="atkResult" aria-live="polite" class="highlight-box" style="margin-top:8px;"></div>
+</div>
+<div class="calc-box">
+<h4>💚 Healing Calculator</h4>
+<div class="input-row">
+<div class="input-group"><label>Current HP</label><input type="number" id="healCurrent" value="5"></div>
+<div class="input-group"><label>Max HP</label><input type="number" id="healMax" value="45"></div>
+</div>
+<div class="input-group"><label>Healing Dice</label><input type="text" id="healDice" value="4d4+4"></div>
+<div class="input-group"><label>Target Status</label>
+<select id="healStatus"><option value="alive">Conscious</option><option value="downed">Downed (0 HP)</option><option value="dying">Dying</option><option value="dead">Dead</option></select>
+</div>
+<button class="primary" id="btnCalcHeal">Calculate Healing</button>
+<div id="healResult" aria-live="polite" class="highlight-box" style="margin-top:8px;"></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TAB 12: Monster Tools -->
+<section class="tab-panel" id="tab-monster-tools" role="tabpanel" aria-labelledby="btn-tab-monster-tools" tabindex="0">
+<div class="card">
+<h3>🎲 Random Monster Generator</h3>
+<div class="input-row">
+<div class="input-group"><label>Target CR</label>
+<select id="randCR">
+<option value="0.125">CR 1/8</option><option value="0.25">CR 1/4</option><option value="0.5">CR 1/2</option>
+<option value="1">CR 1</option><option value="2">CR 2</option><option value="3">CR 3</option>
+<option value="4">CR 4</option><option value="5" selected>CR 5</option><option value="6">CR 6</option>
+<option value="7">CR 7</option><option value="8">CR 8</option><option value="9">CR 9</option>
+<option value="10">CR 10</option><option value="11">CR 11</option><option value="12">CR 12</option>
+<option value="15">CR 15</option><option value="20">CR 20</option>
+</select>
+</div>
+<div class="input-group"><label>Creature Type</label>
+<select id="randType">
+<option value="any">Any</option><option value="aberration">Aberration</option><option value="beast">Beast</option>
+<option value="celestial">Celestial</option><option value="construct">Construct</option>
+<option value="dragon">Dragon</option><option value="elemental">Elemental</option>
+<option value="fey">Fey</option><option value="fiend">Fiend</option><option value="giant">Giant</option>
+<option value="humanoid">Humanoid</option><option value="monstrosity">Monstrosity</option>
+<option value="ooze">Ooze</option><option value="plant">Plant</option><option value="undead">Undead</option>
+</select>
+</div>
+<div class="input-group"><label>Environment</label>
+<select id="randEnv">
+<option value="any">Any</option><option value="arctic">Arctic</option><option value="coast">Coast</option>
+<option value="desert">Desert</option><option value="forest">Forest</option>
+<option value="grassland">Grassland</option><option value="mountain">Mountain</option>
+<option value="swamp">Swamp</option><option value="underdark">Underdark</option><option value="urban">Urban</option>
+</select>
+</div>
+</div>
+<button class="primary" id="btnRandomMonster">🎲 Generate Monster</button>
+<div id="randomMonsterResult" aria-live="polite"></div>
+</div>
+<div class="card">
+<h3>📐 Ability Score Generator (by CR)</h3>
+<div class="input-row">
+<div class="input-group"><label>Target CR</label>
+<select id="abilityCR">
+<option value="0">CR 0</option><option value="0.125">CR 1/8</option><option value="0.25">CR 1/4</option>
+<option value="0.5">CR 1/2</option><option value="1">CR 1</option><option value="2">CR 2</option>
+<option value="3">CR 3</option><option value="4">CR 4</option><option value="5" selected>CR 5</option>
+<option value="6">CR 6</option><option value="7">CR 7</option><option value="8">CR 8</option>
+<option value="9">CR 9</option><option value="10">CR 10</option><option value="11">CR 11</option>
+<option value="15">CR 15</option><option value="20">CR 20</option><option value="25">CR 25</option>
+<option value="30">CR 30</option>
+</select>
+</div>
+<div class="input-group"><label>Archetype</label>
+<select id="abilityArchetype">
+<option value="balanced">Balanced</option><option value="brute">Brute</option>
+<option value="skirmisher">Skirmisher</option><option value="caster">Caster</option>
+<option value="tank">Tank</option>
+</select>
+</div>
+</div>
+<button class="primary" id="btnGenAbilityScores">Generate Ability Scores</button>
+<div id="abilityScoreResult" aria-live="polite" style="margin-top:10px;"></div>
+</div>
+<div class="card">
+<h3>🎯 Skill Proficiency Calculator</h3>
+<div class="input-row">
+<div class="input-group"><label>CR</label>
+<select id="skillCR">
+<option value="0">CR 0-4 (+2)</option><option value="5">CR 5-8 (+3)</option>
+<option value="9" selected>CR 9-12 (+4)</option><option value="13">CR 13-16 (+5)</option>
+<option value="17">CR 17-20 (+6)</option><option value="21">CR 21-24 (+7)</option>
+<option value="25">CR 25-28 (+8)</option><option value="29">CR 29-30 (+9)</option>
+</select>
+</div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>STR</label><input type="number" id="skillSTR" value="16"></div>
+<div class="input-group"><label>DEX</label><input type="number" id="skillDEX" value="14"></div>
+<div class="input-group"><label>CON</label><input type="number" id="skillCON" value="14"></div>
+<div class="input-group"><label>INT</label><input type="number" id="skillINT" value="10"></div>
+<div class="input-group"><label>WIS</label><input type="number" id="skillWIS" value="12"></div>
+<div class="input-group"><label>CHA</label><input type="number" id="skillCHA" value="10"></div>
+</div>
+<h4>Proficient Skills</h4>
+<div class="checkbox-group" id="skillProfGroup">
+<label><input type="checkbox" data-skill="Acrobatics" data-ability="DEX"> Acrobatics</label>
+<label><input type="checkbox" data-skill="Animal Handling" data-ability="WIS"> Animal Handling</label>
+<label><input type="checkbox" data-skill="Arcana" data-ability="INT"> Arcana</label>
+<label><input type="checkbox" data-skill="Athletics" data-ability="STR"> Athletics</label>
+<label><input type="checkbox" data-skill="Deception" data-ability="CHA"> Deception</label>
+<label><input type="checkbox" data-skill="History" data-ability="INT"> History</label>
+<label><input type="checkbox" data-skill="Insight" data-ability="WIS"> Insight</label>
+<label><input type="checkbox" data-skill="Intimidation" data-ability="CHA"> Intimidation</label>
+<label><input type="checkbox" data-skill="Investigation" data-ability="INT"> Investigation</label>
+<label><input type="checkbox" data-skill="Medicine" data-ability="WIS"> Medicine</label>
+<label><input type="checkbox" data-skill="Nature" data-ability="INT"> Nature</label>
+<label><input type="checkbox" data-skill="Perception" data-ability="WIS"> Perception</label>
+<label><input type="checkbox" data-skill="Performance" data-ability="CHA"> Performance</label>
+<label><input type="checkbox" data-skill="Persuasion" data-ability="CHA"> Persuasion</label>
+<label><input type="checkbox" data-skill="Religion" data-ability="INT"> Religion</label>
+<label><input type="checkbox" data-skill="Sleight of Hand" data-ability="DEX"> Sleight of Hand</label>
+<label><input type="checkbox" data-skill="Stealth" data-ability="DEX"> Stealth</label>
+<label><input type="checkbox" data-skill="Survival" data-ability="WIS"> Survival</label>
+</div>
+<button class="primary" id="btnCalcSkills" style="margin-top:10px;">Calculate Skill Bonuses</button>
+<div id="skillResult" aria-live="polite" style="margin-top:10px;"></div>
+</div>
+<div class="card">
+<h3>🏛️ Lair & Legendary Action Impact</h3>
+<div class="input-row">
+<div class="input-group"><label>Base HP</label><input type="number" id="lairBaseHP" value="150"></div>
+<div class="input-group"><label>Base DPR</label><input type="number" id="lairBaseDPR" value="40"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Lair Action Damage</label><input type="number" id="lairDmg" value="15"></div>
+<div class="input-group"><label>Lair Effect</label><input type="number" id="lairEffect" value="10"></div>
+<div class="input-group"><label>Legendary Actions/Round</label><input type="number" id="legendaryCount" value="3" min="0" max="10"></div>
+<div class="input-group"><label>Legendary DPR</label><input type="number" id="legendaryDPR" value="20"></div>
+</div>
+<button class="primary" id="btnCalcLair">Calculate Impact</button>
+<div id="lairResult" aria-live="polite" style="margin-top:10px;"></div>
+</div>
+</section>
+
+<!-- TAB 13: PC Tools -->
+<section class="tab-panel" id="tab-pc-tools" role="tabpanel" aria-labelledby="btn-tab-pc-tools" tabindex="0">
+<div class="card">
+<h3>💀 Death Save Tracker</h3>
+<div class="death-save-row">
+<span class="ds-label">✅ Successes:</span>
+<div class="ds-dots" id="dsSuccesses">
+<div class="ds-dot" data-idx="0"></div><div class="ds-dot" data-idx="1"></div><div class="ds-dot" data-idx="2"></div>
+</div>
+</div>
+<div class="death-save-row">
+<span class="ds-label">❌ Failures:</span>
+<div class="ds-dots" id="dsFailures">
+<div class="ds-dot" data-idx="0"></div><div class="ds-dot" data-idx="1"></div><div class="ds-dot" data-idx="2"></div>
+</div>
+</div>
+<div class="input-row" style="margin-top:10px;">
+<button class="small" id="btnDSRoll">🎲 Roll Death Save</button>
+<button class="small" id="btnDSCritSuccess">💚 Nat 20</button>
+<button class="small" id="btnDSCritFail">💀 Nat 1</button>
+<button class="small" id="btnDSReset">🔄 Reset</button>
+</div>
+<div id="dsStatus" class="highlight-box" style="margin-top:10px;"></div>
+</div>
+<div class="card">
+<h3>🧪 Condition Tracker</h3>
+<div class="checkbox-group" id="conditionChips">
+<span class="condition-chip" data-cond="blinded">👁️ Blinded</span>
+<span class="condition-chip" data-cond="charmed">💞 Charmed</span>
+<span class="condition-chip" data-cond="deafened">🔇 Deafened</span>
+<span class="condition-chip" data-cond="frightened">😱 Frightened</span>
+<span class="condition-chip" data-cond="grappled">🤼 Grappled</span>
+<span class="condition-chip" data-cond="incapacitated">🚫 Incapacitated</span>
+<span class="condition-chip" data-cond="invisible">👻 Invisible</span>
+<span class="condition-chip" data-cond="paralyzed">⚡ Paralyzed</span>
+<span class="condition-chip" data-cond="petrified">🗿 Petrified</span>
+<span class="condition-chip" data-cond="poisoned">☠️ Poisoned</span>
+<span class="condition-chip" data-cond="prone">🤸 Prone</span>
+<span class="condition-chip" data-cond="restrained">⛓️ Restrained</span>
+<span class="condition-chip" data-cond="stunned">💫 Stunned</span>
+<span class="condition-chip" data-cond="unconscious">😴 Unconscious</span>
+<span class="condition-chip" data-cond="exhaustion-1">Exhaustion 1</span>
+<span class="condition-chip" data-cond="exhaustion-2">Exhaustion 2</span>
+<span class="condition-chip" data-cond="exhaustion-3">Exhaustion 3</span>
+<span class="condition-chip" data-cond="concentrating">🎯 Concentrating</span>
+</div>
+<div id="conditionEffects" class="highlight-box" style="margin-top:10px;"></div>
+</div>
+<div class="card">
+<h3>🛌 Hit Dice Recovery</h3>
+<div class="input-row">
+<div class="input-group"><label>Total Hit Dice</label><input type="number" id="restTotalHD" value="8" min="0" max="40"></div>
+<div class="input-group"><label>Die Size</label>
+<select id="restDieSize"><option value="6">d6</option><option value="8" selected>d8</option><option value="10">d10</option><option value="12">d12</option></select>
+</div>
+<div class="input-group"><label>Constitution Modifier</label><input type="number" id="restConMod" value="2" min="-5" max="10"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Current HP</label><input type="number" id="restCurrentHP" value="20"></div>
+<div class="input-group"><label>Max HP</label><input type="number" id="restMaxHP" value="60"></div>
+</div>
+<button class="primary" id="btnCalcRest">Calculate Rest Recovery</button>
+<div id="restResult" aria-live="polite" style="margin-top:10px;"></div>
+</div>
+<div class="card">
+<h3>😰 Exhaustion Level Tracker</h3>
+<div class="exhaustion-levels" id="exhaustionLevels">
+<div class="exhaustion-level" data-lvl="0"><span class="lvl-num">0</span>None</div>
+<div class="exhaustion-level" data-lvl="1"><span class="lvl-num">1</span>Disadv. checks</div>
+<div class="exhaustion-level" data-lvl="2"><span class="lvl-num">2</span>Speed halved</div>
+<div class="exhaustion-level" data-lvl="3"><span class="lvl-num">3</span>Disadv. atk/saves</div>
+<div class="exhaustion-level" data-lvl="4"><span class="lvl-num">4</span>HP max halved</div>
+<div class="exhaustion-level" data-lvl="5"><span class="lvl-num">5</span>Speed 0</div>
+<div class="exhaustion-level" data-lvl="6"><span class="lvl-num">6</span>Death</div>
+</div>
+<div id="exhaustionEffect" class="highlight-box" style="margin-top:10px;"></div>
+</div>
+<div class="card">
+<h3>✨ Spell Slot Calculator</h3>
+<div class="input-row">
+<div class="input-group"><label>Caster Level</label><input type="number" id="casterLevel" value="5" min="1" max="20"></div>
+<div class="input-group"><label>Class</label>
+<select id="casterClass">
+<option value="full">Full Caster</option><option value="half">Half Caster</option>
+<option value="third">Third Caster</option><option value="warlock">Warlock</option>
+</select>
+</div>
+</div>
+<button class="primary" id="btnCalcSlots">Generate Slots</button>
+<button class="small" id="btnResetSlots" style="margin-left:6px;">🔄 Restore All</button>
+<div class="spell-slot-grid" id="spellSlotGrid"></div>
+<div id="slotSummary" class="highlight-box" style="margin-top:8px;"></div>
+</div>
+<div class="card">
+<h3>🛡️ Temporary HP Tracker</h3>
+<div class="input-row">
+<div class="input-group"><label>Base Max HP</label><input type="number" id="tmpBaseHP" value="50"></div>
+<div class="input-group"><label>Current Base HP</label><input type="number" id="tmpCurrentHP" value="50"></div>
+</div>
+<h4>Temp HP Sources</h4>
+<div class="temp-hp-stack" id="tempHPStack"></div>
+<div class="input-row" style="margin-top:8px;">
+<button class="small" id="btnAddTempHP">+ Add Source</button>
+<button class="small" id="btnApplyDamage">💥 Apply Damage</button>
+<button class="small" id="btnLongRest">🛌 Long Rest</button>
+</div>
+<div class="input-row" style="margin-top:8px;">
+<div class="input-group"><label>Amount</label><input type="number" id="tmpAmount" value="10" min="1"></div>
+</div>
+<div id="tempHPResult" aria-live="polite" class="highlight-box" style="margin-top:10px;"></div>
+</div>
+</section>
+
+<!-- TAB 14: CR Calculator (NEW) -->
+<section class="tab-panel" id="tab-cr-calc" role="tabpanel" aria-labelledby="btn-tab-cr-calc" tabindex="0">
+<div class="card">
+<h3>🎯 Full CR Calculator (Stats → CR)</h3>
+<p style="font-size:0.85rem;color:var(--text2);margin-bottom:10px;">Input monster stats to calculate Challenge Rating using DMG p.274 methodology.</p>
+<div class="input-row">
+<div class="input-group"><label>Armor Class</label><input type="number" id="crAC" value="15" min="1" max="30"></div>
+<div class="input-group"><label>Hit Points</label><input type="number" id="crHP" value="100" min="1" max="1000"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Attack Bonus</label><input type="number" id="crAtkBonus" value="7"></div>
+<div class="input-group"><label>Damage Per Round (DPR)</label><input type="number" id="crDPR" value="30" min="1"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Save DC (optional)</label><input type="number" id="crSaveDC" value="15" min="1" max="30"></div>
+<div class="input-group"><label>Resistances/Immunities</label>
+<select id="crDefenses">
+<option value="0">None</option>
+<option value="1">1-2 types</option>
+<option value="2" selected>3+ types</option>
+<option value="3">Many immunities</option>
+</select>
+</div>
+</div>
+<div class="input-group">
+<label>Special Traits (CR adjustments)</label>
+<div class="checkbox-group">
+<label><input type="checkbox" id="crMagicResist"> Magic Resistance (+½ CR)</label>
+<label><input type="checkbox" id="crFlySpeed"> Fly Speed (minor boost)</label>
+<label><input type="checkbox" id="crLegendary"> Legendary Actions (+1 CR)</label>
+<label><input type="checkbox" id="crLair"> Lair Actions (+1 CR)</label>
+</div>
+</div>
+<button class="primary" id="btnCalcCR">Calculate CR</button>
+<div id="crResult" aria-live="polite" style="margin-top:12px;"></div>
+</div>
+</section>
+
+<!-- TAB 15: Concentration Calculator (NEW) -->
+<section class="tab-panel" id="tab-concentration" role="tabpanel" aria-labelledby="btn-tab-concentration" tabindex="0">
+<div class="card">
+<h3>🎯 Concentration Check Calculator</h3>
+<p style="font-size:0.85rem;color:var(--text2);margin-bottom:10px;">Calculate probability of maintaining concentration when taking damage.</p>
+<div class="input-row">
+<div class="input-group"><label>Damage Taken</label><input type="number" id="concDamage" value="20" min="1"></div>
+<div class="input-group"><label>Constitution Modifier</label><input type="number" id="concConMod" value="3" min="-5" max="10"></div>
+</div>
+<div class="input-group">
+<label>Feats & Features</label>
+<div class="checkbox-group">
+<label><input type="checkbox" id="concWarCaster"> War Caster (advantage)</label>
+<label><input type="checkbox" id="concResilient"> Resilient (CON) (+2)</label>
+<label><input type="checkbox" id="concAlert"> Alert (no init penalty)</label>
+</div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Spell Level (for context)</label>
+<select id="concSpellLevel">
+<option value="1">1st Level</option><option value="2">2nd Level</option>
+<option value="3" selected>3rd Level</option><option value="4">4th Level</option>
+<option value="5">5th Level</option><option value="6">6th Level</option>
+<option value="7">7th Level</option><option value="8">8th Level</option>
+<option value="9">9th Level</option>
+</select>
+</div>
+<div class="input-group"><label>Simulate Multiple Hits</label>
+<input type="number" id="concHits" value="1" min="1" max="10" style="max-width:100px;"></div>
+</div>
+<button class="primary" id="btnCalcConc">Calculate Success Chance</button>
+<div id="concResult" aria-live="polite" style="margin-top:12px;"></div>
+</div>
+</section>
+
+<!-- TAB 16: Day Budget (NEW) -->
+<section class="tab-panel" id="tab-day-budget" role="tabpanel" aria-labelledby="btn-tab-day-budget" tabindex="0">
+<div class="card">
+<h3>📅 Multi-Encounter Adventuring Day Budget</h3>
+<p style="font-size:0.85rem;color:var(--text2);margin-bottom:10px;">Track resources across multiple encounters in an adventuring day (DMG p.84).</p>
+<div class="input-row">
+<div class="input-group"><label>Number of Encounters</label><input type="number" id="dayEncounters" value="6" min="1" max="20"></div>
+<div class="input-group"><label>Party Size</label><input type="number" id="dayPartySize" value="4" min="1" max="10"></div>
+<div class="input-group"><label>Average Party Level</label><input type="number" id="dayPartyLevel" value="5" min="1" max="20"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Short Rests per Day</label><input type="number" id="dayShortRests" value="2" min="0" max="6"></div>
+<div class="input-group"><label>Encounter Difficulty Mix</label>
+<select id="dayDifficultyMix">
+<option value="balanced">Balanced (Easy/Med/Hard mix)</option>
+<option value="easy">Mostly Easy</option>
+<option value="medium">Mostly Medium</option>
+<option value="hard">Mostly Hard</option>
+<option value="deadly">Boss-heavy</option>
+</select>
+</div>
+</div>
+<button class="primary" id="btnCalcDayBudget">Calculate Day Budget</button>
+<div id="dayBudgetResult" aria-live="polite" style="margin-top:12px;"></div>
+</div>
+<div class="card">
+<h3>📊 Encounter Timeline</h3>
+<p style="font-size:0.85rem;color:var(--text2);margin-bottom:10px;">Add encounters to visualize resource drain across the day.</p>
+<div id="dayTimeline"></div>
+<div class="input-row" style="margin-top:8px;">
+<div class="input-group"><label>Encounter Difficulty</label>
+<select id="timelineEncDiff">
+<option value="easy">Easy</option><option value="medium" selected>Medium</option>
+<option value="hard">Hard</option><option value="deadly">Deadly</option>
+</select>
+</div>
+<div class="input-group"><label>HP Drain %</label><input type="number" id="timelineHPDrain" value="15" min="0" max="100"></div>
+</div>
+<button class="small" id="btnAddTimelineEnc">+ Add Encounter</button>
+<button class="small" id="btnAddShortRest">🌞 Add Short Rest</button>
+<button class="small" id="btnClearTimeline">🗑️ Clear</button>
+</div>
+</section>
+
+<!-- TAB 17: Party Radar (NEW) -->
+<section class="tab-panel" id="tab-party-radar" role="tabpanel" aria-labelledby="btn-tab-party-radar" tabindex="0">
+<div class="card">
+<h3>📊 Party Composition Radar Chart</h3>
+<p style="font-size:0.85rem;color:var(--text2);margin-bottom:10px;">Visualize party strengths and identify gaps.</p>
+<div class="input-row">
+<div class="input-group"><label>Single-Target DPR</label><input type="number" id="radarDPR" value="60"></div>
+<div class="input-group"><label>AoE DPR</label><input type="number" id="radarAoE" value="40"></div>
+<div class="input-group"><label>Healing Capacity</label><input type="number" id="radarHealing" value="50"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Tankiness (HP×AC)</label><input type="number" id="radarTank" value="800"></div>
+<div class="input-group"><label>Utility (skills)</label><input type="number" id="radarUtility" value="8" min="0" max="20"></div>
+<div class="input-group"><label>Control (save-or-suck)</label><input type="number" id="radarControl" value="3" min="0" max="10"></div>
+</div>
+<button class="primary" id="btnCalcRadar">Generate Radar Chart</button>
+<canvas id="radarCanvas" width="500" height="400" style="margin-top:20px;max-width:500px;"></canvas>
+<div id="radarAnalysis" style="margin-top:12px;"></div>
+</div>
+</section>
+
+<!-- TAB 18: Initiative (NEW) -->
+<section class="tab-panel" id="tab-initiative" role="tabpanel" aria-labelledby="btn-tab-initiative" tabindex="0">
+<div class="card">
+<h3>&#9889; Combat Tracker &mdash; Initiative, HP, Conditions &amp; Death Saves</h3>
+<p style="font-size:0.85rem;color:var(--text2);margin-bottom:10px;">Run the whole fight here: initiative order, HP bars, temp HP, conditions, death saving throws, round counter, and a full damage log with undo. Everything auto-saves to this browser.</p>
+<div class="result-grid" id="ctSummary" aria-live="polite"></div>
+<div class="input-row" style="margin-top:10px;">
+<button class="primary" id="ctNext">&#9654; Next Turn</button>
+<button class="small" id="ctPrev">&#9664; Previous</button>
+<button class="small" id="ctRollAll">&#127922; Roll All Initiative</button>
+<button class="small" id="ctSort">&#8645; Re-sort</button>
+<button class="small" id="ctUndo">&#8630; Undo Last</button>
+<button class="small" id="ctClear">&#128465; End Combat</button>
+</div>
+</div>
+
+<div class="card">
+<h4>&#10133; Add Combatant</h4>
+<div class="input-row">
+<div class="input-group"><label>Name</label><input type="text" id="ctName" placeholder="Goblin Boss"></div>
+<div class="input-group"><label>Type</label><select id="ctKind"><option value="monster">Monster</option><option value="pc">Player Character</option></select></div>
+<div class="input-group"><label>DEX Mod</label><input type="number" id="ctDex" value="0" min="-5" max="10"></div>
+<div class="input-group"><label>Initiative (blank = roll)</label><input type="number" id="ctInit" placeholder="Auto"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Max HP</label><input type="number" id="ctMaxHP" value="22" min="1"></div>
+<div class="input-group"><label>AC</label><input type="number" id="ctAC" value="13" min="1"></div>
+<div class="input-group"><label>Count (duplicates)</label><input type="number" id="ctCount" value="1" min="1" max="20"></div>
+</div>
+<div class="input-row">
+<button class="primary" id="ctAdd">+ Add to Combat</button>
+<button class="small" id="ctImportEncounter">&#8681; Import Encounter Monsters</button>
+<button class="small" id="ctImportParty">&#8681; Import Party</button>
+</div>
+</div>
+
+<div class="card">
+<h4>&#9876; Turn Order</h4>
+<div id="ctList" class="initiative-list" aria-live="polite"></div>
+</div>
+
+<div class="card">
+<h4>&#128220; Damage &amp; Healing Log</h4>
+<div id="ctLog" aria-live="polite"></div>
+</div>
+</section>
+
+<!-- TAB 19: Monte Carlo (NEW) -->
+<section class="tab-panel" id="tab-monte-carlo" role="tabpanel" aria-labelledby="btn-tab-monte-carlo" tabindex="0">
+<div class="card">
+<h3>🎲 Monte Carlo Combat Simulator</h3>
+<p style="font-size:0.85rem;color:var(--text2);margin-bottom:10px;">Simulate 1000+ combats to predict outcomes statistically.</p>
+<div class="input-row">
+<div class="input-group"><label>Party Total HP</label><input type="number" id="mcPartyHP" value="120"></div>
+<div class="input-group"><label>Party DPR</label><input type="number" id="mcPartyDPR" value="80"></div>
+<div class="input-group"><label>Party AC (avg)</label><input type="number" id="mcPartyAC" value="16"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Monster Total HP</label><input type="number" id="mcMonsterHP" value="200"></div>
+<div class="input-group"><label>Monster DPR</label><input type="number" id="mcMonsterDPR" value="50"></div>
+<div class="input-group"><label>Monster Attack Bonus</label><input type="number" id="mcMonsterAtk" value="7"></div>
+</div>
+<div class="input-row">
+<div class="input-group"><label>Simulations</label><input type="number" id="mcSims" value="1000" min="100" max="10000"></div>
+<div class="input-group"><label>Party Size (for action economy)</label><input type="number" id="mcPartySize" value="4" min="1" max="10"></div>
+<div class="input-group"><label>Monster Count</label><input type="number" id="mcMonsterCount" value="1" min="1" max="20"></div>
+</div>
+<button class="primary" id="btnRunMonteCarlo">Run Simulation</button>
+<div id="mcResult" aria-live="polite" style="margin-top:12px;"></div>
+<canvas id="mcCanvas" width="700" height="300" style="margin-top:10px;"></canvas>
+</div>
+</section>
+
+<!-- TAB 20: XP Tracker (NEW) -->
+<section class="tab-panel" id="tab-xp-tracker" role="tabpanel" aria-labelledby="btn-tab-xp-tracker" tabindex="0">
+<div class="card">
+<h3>📈 Campaign XP & Level Tracker</h3>
+<p style="font-size:0.85rem;color:var(--text2);margin-bottom:10px;">Track XP across sessions and predict level-ups.</p>
+<div class="input-row">
+<div class="input-group"><label>Current Level</label><input type="number" id="xpCurrentLevel" value="3" min="1" max="20"></div>
+<div class="input-group"><label>Current XP</label><input type="number" id="xpCurrent" value="1400" min="0"></div>
+<div class="input-group"><label>Session XP Gained</label><input type="number" id="xpSession" value="500" min="0"></div>
+</div>
+<div class="input-row">
+<button class="primary" id="btnAddXP">Add Session XP</button>
+<button class="small" id="btnResetXP">🔄 Reset</button>
+<button class="small" id="btnExportXP">📦 Export History</button>
+</div>
+<div id="xpResult" aria-live="polite" style="margin-top:12px;"></div>
+<div id="xpHistory" style="margin-top:12px;"></div>
+</div>
+<div class="card">
+<h3>💰 Loot & XP Split Calculator</h3>
+<div class="input-row">
+<div class="input-group"><label>Total GP</label><input type="number" id="lootGP" value="1000" min="0"></div>
+<div class="input-group"><label>Total XP</label><input type="number" id="lootXP" value="2000" min="0"></div>
+<div class="input-group"><label>Party Size</label><input type="number" id="lootParty" value="4" min="1" max="10"></div>
+</div>
+<div class="input-group"><label>Magic Items (count)</label><input type="number" id="lootMagicItems" value="1" min="0"></div>
+<button class="primary" id="btnCalcLoot">Calculate Split</button>
+<div id="lootResult" aria-live="polite" style="margin-top:12px;"></div>
+</div>
+</section>
+</div>
+
+<dialog id="saveLoadModal" style="border-radius:10px;padding:20px;background:var(--card);color:var(--text);border:1px solid var(--border);max-width:500px;width:90%;">
+<h3 id="modalTitle">Save/Load</h3>
+<div id="modalContent"></div>
+<button id="btnCloseModal" style="margin-top:10px;">Close</button>
+</dialog>
+
+<footer class="site-footer">
+<div class="container">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© 2025 [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

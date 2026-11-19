@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creature Builder — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Build monster HP by creature size: Tiny d4 to Gargantuan d20, Constitution score conversion and one-click average HP for homebrew D&D 5e creatures.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/creature-builder.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Creature Builder — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Build monster HP by creature size: Tiny d4 to Gargantuan d20, Constitution score conversion and one-click average HP for homebrew D&D 5e creatures.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>🐉 Creature Builder</h1>
+<p class="updated">Tool 2 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>The Creature Builder turns the size-to-hit-die table into a one-click monster chassis. Pick the creature's size — Tiny, Small, Medium, Large, Huge or Gargantuan — and the tool selects the right hit die automatically: d4, d6, d8, d10, d12 or d20, exactly as the 5e monster-creation guidelines prescribe. No table-hopping, no second-guessing whether a Large brute rolls d8s or d10s.</p>
+<p>Enter the number of hit dice, a Constitution modifier and any flat bonus, then press <strong>Build &amp; Calculate</strong>. If you only know the Constitution score — 16 for a hardy brute, say — type that instead and press <strong>Set from Score</strong>; the tool converts the score to its modifier for you. The result grid reports average, minimum and maximum HP with a full breakdown of every term, so the chassis is documented the moment it exists.</p>
+<p>This is the fastest path from 'I need something for tonight' to a creature with believable, size-appropriate hit points. Combine it with CR Reverse Engineering to pick the right dice count for a target difficulty, then hand the finished numbers to the Statblock Generator so the creature is properly written up.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Automatic hit-die selection from size: Tiny d4 up to Gargantuan d20</li>
+<li>Constitution score input with automatic modifier conversion</li>
+<li>Flat-bonus field for template or homebrew padding</li>
+<li>Average, minimum and maximum output with a full arithmetic breakdown</li>
+<li>One-click build that feeds the Statblock Generator</li>
+<li>Numbers consistent with how every published monster is constructed</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>Hit points equal HD × average die + HD × Con modifier + flat bonus — the same construction published monsters use. A Medium creature with 8 HD, Constitution 16 and no flat bonus lands at 8 × 4.5 + 8 × 3 = 60 HP, and the breakdown spells out each contribution so you can defend the number at the table.</p>
+
+<div class="callout">
+<strong>Design tip:</strong> match the die to the silhouette. Swarms and skulking things sit at the bottom of their size's range, brutes at the top — and a d20 hit die is nearly always Gargantuan, so players will notice if your Medium horror rolls one.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Creature Builder lives inside the main calculator.</strong> Open the app and click the <strong>Creature</strong> tab — the second one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="reverse-engineer.html">CR Reverse Engineering</a>, <a href="statblock.html">Statblock Generator</a> and <a href="calculator.html">Hit Dice Calculator</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

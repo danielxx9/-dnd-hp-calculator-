@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Party Composition Radar — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Draw your party's shape: a six-axis radar of DPR, AoE, healing, tankiness, utility and control that exposes the gap before the deadly dungeon.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/party-radar.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Party Composition Radar — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Draw your party's shape: a six-axis radar of DPR, AoE, healing, tankiness, utility and control that exposes the gap before the deadly dungeon.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>📊 Party Composition Radar</h1>
+<p class="updated">Tool 17 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Every party has a gap, and the gap stays invisible until the saving throw that matters. The Party Composition Radar draws six axes of combat capability — single-target DPR, AoE damage, healing capacity, tankiness, utility and control — as a radar chart of the whole party's shape. The profile makes holes obvious at a glance.</p>
+<p>Enter the party's aggregate numbers in the six fields, press <strong>Generate Radar Chart</strong>, and the canvas renders the profile immediately, with an automated analysis underneath calling out the strong and weak axes. Tankiness is entered as HP times AC, the honest durability proxy; utility is counted in skills and control in save-or-suck effects, on simple bounded scales. The defaults show a balanced level-5 party; your table will not be balanced, and that is the point.</p>
+<p>The chart is a conversation starter as much as a diagnostic. Show it to your players before the deadly dungeon and let them see the healer gap themselves — it lands better than any DM hint, and it lets the players patch the hole with a potion budget or a hireling instead of you silently nerfing the dungeon.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Six capability axes: DPR, AoE, healing, tankiness, utility, control</li>
+<li>Instant canvas radar chart, fully offline</li>
+<li>Automated gap analysis beneath the chart</li>
+<li>Tankiness modeled as HP × AC, the honest durability proxy</li>
+<li>Utility and control on simple bounded scales</li>
+<li>The pre-dungeon sanity check for party structure</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>The six raw numbers are normalized onto a common scale to draw the polygon. Tankiness multiplies HP by AC because a character with huge HP and poor AC bleeds far faster than either number alone suggests — 80 HP at AC 12 dies quicker than 50 HP at AC 18 in most fights.</p>
+<p>Rough estimates are fine — the chart reads trends rather than decimals, so guestimate the party totals from character sheets and the shape will still tell the truth.</p>
+
+<div class="callout">
+<strong>Re-run it</strong> after every level-up or roster change. Parties drift quietly — a multiclass, a new familiar or one dead hireling moves axes that nobody rechecks until the fight goes wrong.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Party Composition Radar lives inside the main calculator.</strong> Open the app and click the <strong>Party Radar</strong> tab — the seventeenth one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="encounter-builder.html">Encounter Builder</a>, <a href="day-budget.html">Adventuring Day Budget</a> and <a href="monte-carlo.html">Monte Carlo Combat Simulator</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>

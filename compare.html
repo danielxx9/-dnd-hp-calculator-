@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparison Mode — Tool Guide · 5e HP Forge</title>
+<meta name="description" content="Compare up to four D&D 5e hit-dice expressions side by side — average, min, max and durability — and settle build arguments with numbers.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/compare.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Comparison Mode — Tool Guide · 5e HP Forge">
+<meta property="og:description" content="Compare up to four D&D 5e hit-dice expressions side by side — average, min, max and durability — and settle build arguments with numbers.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>⚖️ Comparison Mode</h1>
+<p class="updated">Tool 8 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+
+<p>Is 8d10+24 tougher than 15d6-5? The averages are close — and 'close' is where surprises live. Comparison Mode puts up to four hit-dice configurations side by side and grades them on the numbers that matter: minimum, maximum and average hit points, plus a durability percentage relative to the strongest build.</p>
+<p>The slots come preloaded with two contrasting builds so the idea is obvious immediately: a steady Medium brute on d10s against a swingy creature on d6s with a bigger flat bonus. Replace them with anything — two candidate builds for the same boss, a monster before and after a template, or the same creature at two levels. Slots three and four are optional; two are often enough to settle an argument.</p>
+<p>Combined with the Probability Dashboard, Compare is how you stop designing by folklore. When the table insists two builds are 'basically the same HP', you can answer with a table instead of an opinion — and quietly pick the one whose floor holds up when the dice turn hostile.</p>
+<h2>What you can do</h2>
+<ul>
+<li>Up to four expressions compared at once, two minimum</li>
+<li>Side-by-side minimum, maximum and average hit points</li>
+<li>Durability percentage relative to the strongest configuration</li>
+<li>Instantly exposes the variance differences averages hide</li>
+<li>Same expression syntax as the main calculator</li>
+<li>One pass, no reload — all results appear together</li>
+</ul>
+
+<h2>How the math works</h2>
+<p>Every build is scored with the same NdM±K arithmetic as the main calculator, and the durability column scales each average against the group's strongest. The interesting number is usually the spread: <code>8d10+24</code> spans 32 to 104 while <code>15d6-5</code> spans 10 to 85 — one never drops below a fightable floor, the other can.</p>
+<p>Because all four builds are scored in a single pass with identical arithmetic, the comparison is fair by construction: no rounding differences, no forgotten modifiers, no re-typing. Swap expressions and re-run as often as you like — nothing else on the page changes.</p>
+
+<div class="callout">
+<strong>Boss picks:</strong> when choosing between candidates, weigh the minimum. A boss whose worst case is still respectable is more reliable than one whose average merely looks good.
+</div>
+
+<h2>Open this tool</h2>
+<div class="callout info">
+<p><strong>Comparison Mode lives inside the main calculator.</strong> Open the app and click the <strong>Compare</strong> tab — the eighth one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
+</div>
+
+<h2>Related tools</h2>
+<p>Keep exploring: <a href="probability.html">Probability Dashboard</a>, <a href="templates.html">Templates & Transformations</a> and <a href="effective-hp.html">Effective HP Calculator</a>.</p>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>
