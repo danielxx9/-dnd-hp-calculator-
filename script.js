@@ -4007,3 +4007,35 @@ function build6(){
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build6);
 else build6();
 })();
+
+
+// --- Deep-link URL Hash / Query Tab Activation ---
+(function () {
+  function activateTabFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    let target = params.get("tab") || window.location.hash.replace(/^#/, "");
+    if (!target) return;
+    if (!target.startsWith("tab-")) target = "tab-" + target;
+
+    const tabBtn = document.querySelector(`.tab-btn[data-tab="${target}"], #btn-${target}`);
+    if (tabBtn) {
+      tabBtn.click();
+      tabBtn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+  }
+
+  // Update URL hash when user clicks any tab button
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".tab-btn[data-tab]");
+    if (btn && btn.dataset.tab) {
+      history.replaceState(null, "", "#" + btn.dataset.tab);
+    }
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", activateTabFromUrl);
+  } else {
+    activateTabFromUrl();
+  }
+  window.addEventListener("hashchange", activateTabFromUrl);
+})();
