@@ -1,3 +1,6 @@
 name = "dnd-hp-calculator"
 compatibility_date = "2026-11-19"
-pages_build_output_dir = "."
+
+[assets]
+directory = "./"
+not_found_handling = "single-page-application"
