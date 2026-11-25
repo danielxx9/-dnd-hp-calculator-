@@ -998,16 +998,25 @@ Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast.
 </footer>
 
 <script src="script.js" defer></script>
+
 <script>
 (function() {
-  function openRequestedTab() {
+  function getTargetTab() {
     var params = new URLSearchParams(window.location.search);
     var t = params.get('tool') || params.get('tab') || window.location.hash.replace(/^#/, '');
-    if (!t || t.startsWith('s=')) return;
-    if (!t.startsWith('tab-')) t = 'tab-' + t;
+    if (!t || t.startsWith('s=')) return null;
+    return t.startsWith('tab-') ? t : 'tab-' + t;
+  }
+
+  function applyTab() {
+    var t = getTargetTab();
+    if (!t) return true;
     var btn = document.querySelector('[data-tab="' + t + '"]');
     var panel = document.getElementById(t);
-    if (btn && panel) {
+    if (!btn || !panel) return false;
+
+    if (!panel.classList.contains('active')) {
+      btn.click();
       document.querySelectorAll('.tab-btn').forEach(function(b) {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
@@ -1022,10 +1031,17 @@ Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast.
       panel.classList.add('active');
       btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
+    return panel.classList.contains('active');
   }
-  window.addEventListener('DOMContentLoaded', openRequestedTab);
-  window.addEventListener('load', openRequestedTab);
-  window.addEventListener('hashchange', openRequestedTab);
+
+  var attempts = 0;
+  var timer = setInterval(function() {
+    attempts++;
+    if (applyTab() && attempts > 5) clearInterval(timer);
+    if (attempts > 30) clearInterval(timer);
+  }, 50);
+
+  window.addEventListener('hashchange', applyTab);
 })();
 </script>
 </body>
