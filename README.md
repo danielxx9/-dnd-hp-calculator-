@@ -73,17 +73,49 @@ Beyond the calculator itself, the site ships a complete supporting page set, all
 |---|---|---|
 | Calculator | `index.html` | The 20-tool app itself. |
 | About | `about.html` | What the tool is, feature overview, credits, contact. |
-| FAQ | `faq.html` | 13 grounded Q&As on dice math, storage, share links, shortcuts. |
+| FAQ | `faq.html` | 14 grounded Q&As on dice math, storage, share links, shortcuts. |
 | Changelog | `changelog.html` | Version history: core release, v4, v5, v6 modules. |
 | Privacy Policy | `privacy.html` | No-collection policy, localStorage key-by-key disclosure. |
 | Terms of Use | `terms.html` | MIT code, SRD 5.1 (CC BY 4.0) credit, no-WotC-affiliation, as-is warranty. |
 | Not Found | `404.html` | Themed 404 page — served automatically by Cloudflare Pages. |
 | Tools Hub | `tools.html` | Directory of all 20 tools with a one-line summary each. |
+| Donate | `donate.html` | Support page: Ko-fi / Buy Me a Coffee / GitHub Sponsors / PayPal cards, transparency note. |
 | Tool Guides (20) | `calculator.html` … `xp-tracker.html` | One dedicated 400–500-word guide page per tool. |
-| SEO | `robots.txt`, `sitemap.xml` | Crawler rules and the sitemap (27 URLs). |
+| Guides Hub | `guides.html` | Library page listing the five deep-dive articles. |
+| Guide: HP Calculation | `how-to-calculate-hp-dnd-5e.html` | ~2,400 words: monster hit-dice formula, PC HP, level-ups, bonus-HP feats, FAQ. |
+| Guide: Effective HP | `effective-hp-dnd-5e.html` | ~2,000 words: resistance/immunity multipliers, DMG p.278 table, regeneration, legendary resistance. |
+| Guide: Challenge Rating | `challenge-rating-dnd-5e.html` | ~2,000 words: DMG p.274 defensive/offensive CR math, XP by CR, reverse-engineering. |
+| Guide: Encounter Building | `encounter-building-dnd-5e.html` | ~1,950 words: XP thresholds, multipliers, action economy, adventuring-day budgets. |
+| Guide: Dice Probability | `dice-probability-dnd-5e.html` | ~2,100 words: hit chance, advantage math, 2d6 vs 1d12, expected rounds to kill. |
+| Author Avatar | `images/author-daniel.jpg` | Author photo used in every guide's bio block — replace with your real photo. |
+| SEO | `robots.txt`, `sitemap.xml` | Crawler rules and the sitemap (34 URLs). |
 | Shared assets | `extra.css`, `common.js` | Page chrome styles; CSP-safe dark-mode sync for subpages. |
+| Image assets | `assets/`, `favicon.ico` | OG image (1200×630), favicon set (16/32/48/180/192/512), `site.webmanifest`. |
 
-Two files deserve a note: `extra.css` extends the theme with the site header/footer, prose, FAQ accordion and feature-grid styles (it is loaded after `styles.css`, including on `index.html`, whose footer uses it); `common.js` is a small script for the subpages only — it re-applies the dark-mode preference stored by the calculator and highlights the current nav item. It deliberately does **not** load on `index.html`, where `script.js` already runs. Each of the 20 tools also has its own static guide page (listed on `tools.html`) sharing the same theme, header and footer — pure content, no app code, CSP-compliant.
+Two files deserve a note: `extra.css` extends the theme with the site header/footer, prose, FAQ accordion, feature-grid and donation-card styles (it is loaded after `styles.css`, including on `index.html`, whose footer uses it); `common.js` is a small script for the subpages only — it re-applies the dark-mode preference stored by the calculator and highlights the current nav item. It deliberately does **not** load on `index.html`, where `script.js` already runs. Each of the 20 tools also has its own static guide page (listed on `tools.html`) sharing the same theme, header and footer — pure content, no app code, CSP-compliant.
+
+## SEO Layer (built in)
+
+Every page ships with the full on-page SEO stack, no plugins or external services needed:
+
+- **Per-page uniqueness** — unique `<title>`, meta description and `<link rel="canonical">` on all 28 indexed pages.
+- **Open Graph + Twitter Cards** — every page carries `og:url`, `og:image` (1200×630 branded card at `assets/og-image.png`), `og:site_name`, `og:locale`, and `twitter:card` / `twitter:title` / `twitter:description` / `twitter:image`.
+- **JSON-LD structured data** — `WebApplication` + `WebSite` on the home page (with `featureList` of all 20 tools and a free `Offer`), `ItemList` of all 20 tool guides on `tools.html`, `BreadcrumbList` + `WebPage` on every guide and content page, `AboutPage` on `about.html`, and a 14-question `FAQPage` on `faq.html`.
+- **Icons & PWA-lite** — file-based favicon set (`favicon.ico` 16/32/48, PNG 16/32, `apple-touch-icon.png` 180, Android Chrome 192/512) plus `assets/site.webmanifest` with theme colors.
+- **Crawlability** — permissive `robots.txt` (only `/404.html` disallowed) with a sitemap reference, and a 28-URL sitemap covering every indexable page.
+- **Internal linking** — every page links to the hub and to sibling tool pages ("Related tools" sections), so crawlers can reach all 28 URLs from any page.
+
+## Before You Deploy — replace these placeholders
+
+| Placeholder | Where | Replace with |
+|---|---|---|
+| `[YOUR NAME]` | `LICENSE`, `README.md`, footer fineprint on every page | Your name or handle |
+| `YOUR_BMC_USERNAME` | `donate.html` | Your Buy Me a Coffee username |
+| `YOUR_KOFI_USERNAME` | `donate.html` | Your Ko-fi username |
+| `YOUR_GITHUB_USERNAME` | `donate.html` | Your GitHub username (Sponsors) |
+| `YOUR_PAYPAL_USERNAME` | `donate.html` | Your PayPal.me username |
+
+If you do not use a platform, simply delete that feature-card block from `donate.html`. After deploying on a custom domain, also replace `dnd-hp-calculator.pages.dev` in `robots.txt`, `sitemap.xml`, `site.webmanifest` (start_url) and the canonical/OG tags — a search-and-replace across `*.html` covers it.
 
 ## Cloudflare Pages Deployment
 

@@ -1,6 +1,12 @@
-name = "dnd-hp-calculator"
-compatibility_date = "2026-11-19"
+# Cloudflare Pages configuration for the dnd-hp-calculator project.
+#
+# This file is OPTIONAL for the built-in Cloudflare Pages Git integration
+# (the dashboard auto-detects that the project is a plain static folder and
+# serves index.html directly). You only need this file if you deploy via the
+# Wrangler CLI (e.g. `wrangler pages deploy .`) or via the GitHub Actions
+# workflow in .github/workflows/deploy.yml — Wrangler reads it to resolve the
+# project name and output directory.
 
-[assets]
-directory = "./"
-not_found_handling = "single-page-application"
+name = "dnd-hp-calculator"
+pages_build_output_dir = "."
+compatibility_date = "2025-01-01"

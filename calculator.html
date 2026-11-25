@@ -8,23 +8,43 @@
 <meta name="theme-color" content="#8b3a3a">
 <meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://dnd-hp-calculator.pages.dev/calculator.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/assets/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hit Dice Calculator — Tool Guide · 5e HP Forge">
 <meta property="og:description" content="Hit dice calculator for D&D 5e: paste any expression like 8d10+24 and get min, max and average HP with a full breakdown — plus batch entry for whole lists.">
+<meta property="og:url" content="https://dnd-hp-calculator.pages.dev/calculator.html">
+<meta property="og:image" content="https://dnd-hp-calculator.pages.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="5e HP Forge — D&amp;D 5e HP Calculator &amp; Monster Builder">
+<meta property="og:site_name" content="5e HP Forge">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hit Dice Calculator — Tool Guide · 5e HP Forge">
+<meta name="twitter:description" content="Hit dice calculator for D&D 5e: paste any expression like 8d10+24 and get min, max and average HP with a full breakdown — plus batch entry for whole lists.">
+<meta name="twitter:image" content="https://dnd-hp-calculator.pages.dev/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"5e HP Forge","item":"https://dnd-hp-calculator.pages.dev/"},{"@type":"ListItem","position":2,"name":"All 20 Tools","item":"https://dnd-hp-calculator.pages.dev/tools.html"},{"@type":"ListItem","position":3,"name":"Hit Dice Calculator","item":"https://dnd-hp-calculator.pages.dev/calculator.html"}]},{"@type":"WebPage","name":"Hit Dice Calculator — Tool Guide · 5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/calculator.html","description":"Hit dice calculator for D&D 5e: paste any expression like 8d10+24 and get min, max and average HP with a full breakdown — plus batch entry for whole lists.","isPartOf":{"@type":"WebSite","name":"5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/"}}]}
+</script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="extra.css">
 </head>
 <body>
 <div class="container">
 <header class="site-header">
-<a class="brand" href="./?tool=tab-calculator#tab-calculator">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
 <nav class="site-nav" aria-label="Site navigation">
-<a href="./?tool=tab-calculator#tab-calculator">
+<a href="index.html">Calculator</a>
 <a href="tools.html">Tools</a>
+<a href="guides.html">Guides</a>
 <a href="about.html">About</a>
 <a href="faq.html">FAQ</a>
+<a href="donate.html" class="nav-donate">♥ Donate</a>
+<a href="changelog.html">Changelog</a>
 <a href="privacy.html">Privacy</a>
 <a href="terms.html">Terms</a>
 </nav>
@@ -33,7 +53,7 @@
 
 <main class="prose">
 <h1>🧮 Hit Dice Calculator</h1>
-<p class="updated">Tool 1 of 20 · Part of the free <a href="./?tool=tab-calculator#tab-calculator">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+<p class="updated">Tool 1 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
 
 <p>The Hit Dice Calculator is the heart of the toolkit. Type a hit-dice expression such as <code>8d10+24</code> or <code>15d6-5</code>, press <strong>Calculate HP</strong>, and you get the complete picture of that creature's hit points instantly. The parser reads the standard NdM±K notation used on every official D&amp;D 5e statblock, so you can copy an HP line straight out of a published adventure, paste it in, and see the numbers behind it.</p>
 <p>The result grid answers the questions that matter at the table: the fixed average a DM can use without rolling, the minimum if every die lands on a 1, and the maximum if the creature rolls beautifully. Below the grid, the breakdown shows the arithmetic step by step — how many dice, what each die contributes on average, and where the flat bonus comes from — so you can verify the math instead of trusting a black box.</p>
@@ -58,7 +78,7 @@
 <h2>Open this tool</h2>
 <div class="callout info">
 <p><strong>Hit Dice Calculator lives inside the main calculator.</strong> Open the app and click the <strong>Calculator</strong> tab — the first one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
-<p><a class="btn-link" href="./?tool=tab-calculator#tab-calculator">Open the Calculator →</a></p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
 </div>
 
 <h2>Related tools</h2>
@@ -67,16 +87,18 @@
 
 <footer class="site-footer">
 <div class="footer-links">
-<a href="./?tool=tab-calculator#tab-calculator">
+<a href="index.html">Calculator</a>
 <a href="tools.html">Tools</a>
+<a href="guides.html">Guides</a>
 <a href="about.html">About</a>
 <a href="faq.html">FAQ</a>
+<a href="donate.html">Donate</a>
 <a href="changelog.html">Changelog</a>
 <a href="privacy.html">Privacy Policy</a>
 <a href="terms.html">Terms of Use</a>
 </div>
 <div class="fineprint">
-© <span id="footerYear">2026</span> Daniel · Code licensed under the MIT License.<br>
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
 Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
 </div>
 </footer>

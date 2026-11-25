@@ -1,7 +1,7 @@
 /* ============================================================
-   common.js — tiny shared script for the static site pages
-   (about.html, privacy.html, terms.html, faq.html,
-   changelog.html, 404.html).
+   common.js — tiny shared script for every subpage: the 20 tool
+   guide pages plus about.html, donate.html, privacy.html, terms.html,
+   faq.html, changelog.html, tools.html and 404.html.
 
    The main calculator (index.html) does NOT load this file;
    script.js already handles dark mode there.

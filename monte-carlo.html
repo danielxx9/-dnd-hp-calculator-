@@ -8,23 +8,43 @@
 <meta name="theme-color" content="#8b3a3a">
 <meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://dnd-hp-calculator.pages.dev/monte-carlo.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%238b3a3a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f5e6d3' font-family='Georgia,serif'%3E%E2%9A%94%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/assets/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Monte Carlo Combat Simulator — Tool Guide · 5e HP Forge">
 <meta property="og:description" content="Simulate up to 10,000 combats and get win rate, casualty rate and round distributions — tune bosses with statistics, not vibes.">
+<meta property="og:url" content="https://dnd-hp-calculator.pages.dev/monte-carlo.html">
+<meta property="og:image" content="https://dnd-hp-calculator.pages.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="5e HP Forge — D&amp;D 5e HP Calculator &amp; Monster Builder">
+<meta property="og:site_name" content="5e HP Forge">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Monte Carlo Combat Simulator — Tool Guide · 5e HP Forge">
+<meta name="twitter:description" content="Simulate up to 10,000 combats and get win rate, casualty rate and round distributions — tune bosses with statistics, not vibes.">
+<meta name="twitter:image" content="https://dnd-hp-calculator.pages.dev/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"5e HP Forge","item":"https://dnd-hp-calculator.pages.dev/"},{"@type":"ListItem","position":2,"name":"All 20 Tools","item":"https://dnd-hp-calculator.pages.dev/tools.html"},{"@type":"ListItem","position":3,"name":"Monte Carlo Combat Simulator","item":"https://dnd-hp-calculator.pages.dev/monte-carlo.html"}]},{"@type":"WebPage","name":"Monte Carlo Combat Simulator — Tool Guide · 5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/monte-carlo.html","description":"Simulate up to 10,000 combats and get win rate, casualty rate and round distributions — tune bosses with statistics, not vibes.","isPartOf":{"@type":"WebSite","name":"5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/"}}]}
+</script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="extra.css">
 </head>
 <body>
 <div class="container">
 <header class="site-header">
-<a class="brand" href="./?tool=tab-monte-carlo#tab-monte-carlo">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
 <nav class="site-nav" aria-label="Site navigation">
-<a href="./?tool=tab-monte-carlo#tab-monte-carlo">
+<a href="index.html">Calculator</a>
 <a href="tools.html">Tools</a>
+<a href="guides.html">Guides</a>
 <a href="about.html">About</a>
 <a href="faq.html">FAQ</a>
+<a href="donate.html" class="nav-donate">♥ Donate</a>
+<a href="changelog.html">Changelog</a>
 <a href="privacy.html">Privacy</a>
 <a href="terms.html">Terms</a>
 </nav>
@@ -33,7 +53,7 @@
 
 <main class="prose">
 <h1>🎲 Monte Carlo Combat Simulator</h1>
-<p class="updated">Tool 19 of 20 · Part of the free <a href="./?tool=tab-monte-carlo#tab-monte-carlo">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
+<p class="updated">Tool 19 of 20 · Part of the free <a href="index.html">5e HP Forge</a> toolkit · Runs offline, no tracking</p>
 
 <p>Before you put a boss in front of your players, let a thousand alternate universes fight it first. The Monte Carlo Combat Simulator compresses each side into combat-relevant stats — the party's total HP, DPR and average AC against the monsters' total HP, DPR and attack bonus — then plays out complete fights, rolling every attack and every hit, hundreds or thousands of times.</p>
 <p>Set the simulation count anywhere from 100 to 10,000, and include party size and monster count so the action economy is priced in — the difference between four heroes and one is structural, not just a stat line. The results are statistics you can act on: the party's win rate, the casualty rate among survivors, and the distribution of how many rounds fights actually lasted, drawn as a chart so the shape is as visible as the numbers.</p>
@@ -58,7 +78,7 @@
 <h2>Open this tool</h2>
 <div class="callout info">
 <p><strong>Monte Carlo Combat Simulator lives inside the main calculator.</strong> Open the app and click the <strong>Monte Carlo</strong> tab — the nineteenth one in the tab bar. Everything computes client-side and works offline once the page has loaded.</p>
-<p><a class="btn-link" href="./?tool=tab-monte-carlo#tab-monte-carlo">Open the Calculator →</a></p>
+<p><a class="btn-link" href="index.html">Open the Calculator →</a></p>
 </div>
 
 <h2>Related tools</h2>
@@ -67,16 +87,18 @@
 
 <footer class="site-footer">
 <div class="footer-links">
-<a href="./?tool=tab-monte-carlo#tab-monte-carlo">
+<a href="index.html">Calculator</a>
 <a href="tools.html">Tools</a>
+<a href="guides.html">Guides</a>
 <a href="about.html">About</a>
 <a href="faq.html">FAQ</a>
+<a href="donate.html">Donate</a>
 <a href="changelog.html">Changelog</a>
 <a href="privacy.html">Privacy Policy</a>
 <a href="terms.html">Terms of Use</a>
 </div>
 <div class="fineprint">
-© <span id="footerYear">2026</span> Daniel · Code licensed under the MIT License.<br>
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
 Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
 </div>
 </footer>

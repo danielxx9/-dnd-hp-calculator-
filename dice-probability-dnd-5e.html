@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D&D 5e Dice Probability: The Odds Every DM Should Know · 5e HP Forge</title>
+<meta name="description" content="D&D 5e dice probability explained: hit chance formula, advantage odds, 2d6 vs 1d12, expected rounds to kill, and the DC benchmarks every DM should know by heart.">
+<meta name="theme-color" content="#8b3a3a">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://dnd-hp-calculator.pages.dev/dice-probability-dnd-5e.html">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="D&D 5e Dice Probability: The Odds Every DM Should Know">
+<meta property="og:description" content="Hit chance formula, advantage odds, 2d6 vs 1d12, expected rounds to kill and DC benchmarks — D&D 5e dice probability every DM should know by heart.">
+<meta property="og:url" content="https://dnd-hp-calculator.pages.dev/dice-probability-dnd-5e.html">
+<meta property="og:image" content="https://dnd-hp-calculator.pages.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="5e HP Forge — D&amp;D 5e HP Calculator &amp; Monster Builder">
+<meta property="og:site_name" content="5e HP Forge">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-25">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="D&D 5e Dice Probability: The Odds Every DM Should Know">
+<meta name="twitter:description" content="Hit chance formula, advantage odds, 2d6 vs 1d12, expected rounds to kill and DC benchmarks — D&D 5e dice probability every DM should know by heart.">
+<meta name="twitter:image" content="https://dnd-hp-calculator.pages.dev/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"5e HP Forge","item":"https://dnd-hp-calculator.pages.dev/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://dnd-hp-calculator.pages.dev/guides.html"},{"@type":"ListItem","position":3,"name":"D&D 5e Dice Probability","item":"https://dnd-hp-calculator.pages.dev/dice-probability-dnd-5e.html"}]},{"@type":"BlogPosting","headline":"D&D 5e Dice Probability: The Odds Every DM Should Know","description":"D&D 5e dice probability explained: hit chance formula, advantage odds, 2d6 vs 1d12, expected rounds to kill, and the DC benchmarks every DM should know by heart.","url":"https://dnd-hp-calculator.pages.dev/dice-probability-dnd-5e.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://dnd-hp-calculator.pages.dev/dice-probability-dnd-5e.html"},"image":"https://dnd-hp-calculator.pages.dev/assets/og-image.png","datePublished":"2026-11-25","dateModified":"2026-11-25","inLanguage":"en","author":{"@type":"Person","name":"Daniel","description":"Software engineer and Dungeon Master, creator of 5e HP Forge"},"publisher":{"@type":"Organization","name":"5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/"}}]}
+</script>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+<a class="brand" href="index.html">⚔️ 5e HP Forge</a>
+<nav class="site-nav" aria-label="Site navigation">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="guides.html">Guides</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="donate.html" class="nav-donate">♥ Donate</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</nav>
+<button id="btnDarkToggle" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+</header>
+
+<main class="prose">
+<h1>D&amp;D 5e Dice Probability: The Odds Every DM Should Know</h1>
+<p class="lead">Your rogue needs a 12 on the d20 to pick the vault lock. What are the odds she makes it? If you said "about 50-50," you're close enough for storytelling — but the real answer (45%) is the difference between a lock that opens on turn one and a door that eats three sessions of progress. <strong>D&amp;D 5e dice probability</strong> isn't math-class trivia: it's the skill that turns guessing into aiming, for DCs, boss survival, advantage, and every "should I take Great Weapon Fighter?" argument your table will ever have.</p>
+
+<div class="author-experience" style="border-left: 4px solid var(--accent); padding-left: 16px; margin: 24px 0; font-style: italic; color: var(--muted);">
+    <p>During one boss fight my dice threw three critical hits in four rounds, and the players inspected them for loaded weights. I sat down that night, ran the actual probability, and realized a 45% hit chance hitting 3 of 4 times is rare — but not one-in-a-million rare. Knowing the math made me a calmer DM and a kinder target of suspicion.</p>
+</div>
+
+<p>This guide gives you the handful of formulas that cover 95% of table situations — hit chance, advantage, multi-dice averages, expected rounds to kill — each with a worked example you can reuse verbatim. No statistics background needed; the <a href="probability.html">Probability Dashboard</a> and <a href="monte-carlo.html">Monte Carlo Simulator</a> can verify every number here in one click.</p>
+
+<h2>Hit Chance: The One Formula That Rules Combat</h2>
+<p>Every attack roll in 5e is "d20 + bonus vs. AC, hit if total meets AC." That compresses into a single sentence worth memorizing:</p>
+<p><strong>Hit chance = (21 − (AC − attack bonus)) ÷ 20</strong></p>
+<p>A fighter with +5 to hit against AC 15 needs a total of 15: she hits on 10 through 20, which is eleven faces of twenty — <strong>55%</strong>. The same fighter against AC 18 hits on 13+ → 40%. Quick reference rows you'll use constantly:</p>
+<table>
+<thead><tr><th>Attack bonus</th><th>vs AC 13</th><th>vs AC 15</th><th>vs AC 17</th><th>vs AC 18</th></tr></thead>
+<tbody>
+<tr><td>+3</td><td>55%</td><td>45%</td><td>35%</td><td>30%</td></tr>
+<tr><td>+5</td><td>65%</td><td>55%</td><td>45%</td><td>40%</td></tr>
+<tr><td>+8</td><td>80%</td><td>70%</td><td>60%</td><td>55%</td></tr>
+</tbody>
+</table>
+<p>Two structural truths fall out of this table. First, <strong>every point of AC or attack bonus is worth exactly 5%</strong> — flat, linear, always. Second, in 5e's sweet spot both sides hover around 55–65%, which is why combat feels reliably dicey without ever feeling random-hostile. The designers tuned that on purpose.</p>
+
+<h3>Advantage: The Best-Documented Bonus in the Game</h3>
+<p>Advantage rolls two d20s and keeps the higher — probability-wise, you succeed if <em>either</em> die succeeds:</p>
+<p><strong>P(success with advantage) = 1 − (1 − p)²</strong>, where p is your normal chance.</p>
+<p>Worked numbers you'll want at arm's reach:</p>
+<ul>
+<li>Normal 45% (need a 12) → advantage: 1 − 0.55² = <strong>69.75%</strong></li>
+<li>Normal 55% → advantage: 1 − 0.45² = <strong>79.75%</strong></li>
+<li>Normal 25% (a hard DC 15 with +1) → advantage: <strong>43.75%</strong> — advantage nearly doubles bad odds.</li>
+</ul>
+<p>Notice the pattern: <strong>advantage helps most when odds are worst</strong>, adding up to +25 percentage points at the bottom of the range and shrinking to +5 near the top. Disadvantage is the mirror image: 1 − p², and it hurts bad odds least and good odds most. And for the Trifecta: <strong>Elven Accuracy</strong> (triple roll, keep highest) runs 1 − (1 − p)³ — that 45% chance climbs to <strong>83.4%</strong>. Sneak-attack assassins aren't lucky; they're compounding.</p>
+
+<h3>Crit Odds: The Numbers Behind the Legend</h3>
+<p>A natural 20 is always 5% — advantage can't make it likelier, it can only add a second 5% ticket: <strong>9.75%</strong> (1 − 0.95²). Elven Accuracy pushes it to <strong>14.26%</strong>. Flip side: the chance of at least one nat 20 in a 10-attack adventuring day is 1 − 0.95¹⁰ ≈ <strong>40%</strong> — and over a whole campaign, "impossible" streaks are routine. That's the math my players should have quoted back at me.</p>
+
+<h3>Disadvantage: The Mirror in the Glass</h3>
+<p>Disadvantage keeps the <em>lower</em> die — P(success) = p² — and its cruelty is also asymmetric: the better your normal odds, the more disadvantage stings. A 55% attack drops to <strong>30.25%</strong> (nearly halved), while a desperate 25% only falls to <strong>6.25%</strong> (it was almost lost anyway). Strategically, this means <strong>disadvantage is a tax on reliable attackers</strong>, which is why darkness, Prone-ranged penalties and ogrish at-will effects feel so oppressive against martial parties — and why granting disadvantage to the boss's three attacks per round is often a bigger debuff than any cantrip. When you weigh a level-up or feat that imposes disadvantage, price it as roughly the mirror of advantage: up to −25 points of hit chance against good attackers, trivially small against bad ones.</p>
+
+<h2>Three Dice Facts That Feel Wrong (But Are Mathematically True)</h2>
+<p>Human intuition is terrible at randomness — these are the three illusions that cause most table superstitions, and the numbers that break them:</p>
+<ul>
+<li><strong>The gambler's fallacy.</strong> After five misses in a row, that 55% attack does <em>not</em> become "due" — each d20 forgets everything. The chance of six consecutive misses at 45% hit rate is 0.55⁶ ≈ <strong>2.8%</strong> — rare enough to feel cursed, common enough to happen every few sessions somewhere at your table.</li>
+<li><strong>Clustering looks like rigging.</strong> In 100 random d20 rolls, runs of three identical results appear with near-certainty, and long "hot streaks" are statistically expected. My crit-streak story from the intro? Three crits in four attacks at 5% each is 1-in-2,000 for that exact window — but with thousands of attack rolls per campaign, you'll see it many times. <strong>The dice aren't rigged; humans are pattern engines.</strong></li>
+<li><strong>More dice = more predictable, not more average.</strong> Rolling 8d6, individual rolls cluster tightly around 28 (standard deviation ≈ 4.8), while a single d20 is chaos. This is why big damage expressions feel "fair" and single-d20 death saves feel terrifying — variance, not averages, drives perceived swing.</li>
+</ul>
+<p>Internalizing these three does more for your table's emotional health than any house rule: you'll stop hexing dice, your players will stop accusing them, and everyone can blame the ogre instead.</p>
+
+<h2>Multi-Dice Averages: 2d6 vs 1d12, Fireball Math, and Bell Curves</h2>
+<p>Averages are where most homebrew math quietly fails, so here are the anchors. A single die averages <strong>(faces + 1) ÷ 2</strong>: d6 → 3.5, d8 → 4.5, d10 → 5.5, d12 → 6.5, d20 → 10.5. Damage expressions follow the same pattern as monster HP: <strong>N × per-die average + flat bonus</strong>.</p>
+<ul>
+<li><strong>Great Weapon Fighting's classic debate — 1d12 vs 2d6:</strong> raw averages 6.5 vs 7. The d12 has a chance at 12; the 2d6 has a <em>floor of 2</em> and clusters around 7. Over 100 swings, 2d6 wins by ~50 damage; over one swing, the d12's ceiling is real. <strong>Average favors 2d6; drama favors the d12.</strong></li>
+<li><strong>Fireball's 8d6:</strong> 8 × 3.5 = <strong>28 average</strong>, range 8–48. Against DC 15 with a +2 save, targets fail 60% of the time — expected damage per cast against a single target ≈ 28 × 0.6 + 14 × 0.4 = <strong>22.4</strong>. That's the number to compare against a martial's output, not the fantasy 48.</li>
+<li><strong>Bell curves:</strong> 3d6 (used for rolling stats and common homebrew) peaks hard at 10–11 — the middle is twice as likely as the extremes. That's why "bell-curve" dice systems feel consistent and single-d20 systems feel swingy: the d20 has no curve at all, every face equally likely.</li>
+</ul>
+
+<h2>Expected Rounds to Kill: The DM's Most Useful Statistic</h2>
+<p>This is the calculation that makes boss HP design rational instead of vibes-based:</p>
+<p><strong>Expected rounds = monster HP ÷ (party DPR × hit chance)</strong></p>
+<p>Worked example — the classic 68 HP hill-giant-tier boss (that's 8d10+24, from our <a href="how-to-calculate-hp-dnd-5e.html">HP calculation guide</a>) against a party of four dealing 30 raw DPR at a 55% hit rate: effective damage per round is 4 × 30 × 0.55 = 66, so the boss lasts <strong>68 ÷ 66 ≈ one round</strong>. One round! If you want a four-round finale, the HP needs to be roughly 4 × 66 ≈ <strong>264</strong> — plus whatever <a href="effective-hp-dnd-5e.html">effective HP mitigation</a> you layer on.</p>
+<p>Run the same numbers the other way for survival pressure: a CR-matched enemy dealing 30 DPR at 60% against your 45-HP wizard is expected to drop them in <strong>45 ÷ 18 = 2.5 rounds of focused fire</strong>. That's why squishies hide behind tanks — and why "the monster beelines the wizard" is a difficulty dial, not a personality trait.</p>
+<p>Want all of this computed over a thousand fights instead of one estimate? That's literally what the <a href="monte-carlo.html">Monte Carlo Combat Simulator</a> does — enter both sides, get win rates, casualty counts and round distributions. And for pure dice-expression distributions, the <a href="probability.html">Probability Dashboard</a> plots the exact histogram, mean and standard deviation of anything you can write as NdM±K.</p>
+
+<h2>DC Benchmarks: Setting Numbers That Feel Fair</h2>
+<p>Difficulty classes are probabilities in disguise. The d20 baseline (competent adventurer, +5 bonus): <strong>DC 10 = 80%, DC 15 = 55%, DC 20 = 30%</strong>. Three table-tested rules fall out of this:</p>
+<ul>
+<li><strong>DC 15 is the "honest" default</strong> — meaningful risk for average builds, comfortable for specialists. If you can't justify a number, 15 is defensible everywhere.</li>
+<li><strong>Above DC 20, only specialists should ever succeed</strong> — that's by design. If the whole party should pass, the DC isn't 22; the task isn't a roll.</li>
+<li><strong>Let advantage do the flavor.</strong> Instead of DC 18 for the "clever approach," set DC 15 and grant advantage — same success math, better table feel, and players can see their cleverness working.</li>
+</ul>
+
+<h2>Frequently Asked Questions About 5e Dice Probability</h2>
+
+<h3>What are the odds of rolling a natural 20 with advantage in 5e?</h3>
+<p>9.75%. Each d20 has a 5% chance, so with advantage the chance is 1 − 0.95² = 0.0975. With Elven Accuracy (three dice, keep the highest) it rises to 1 − 0.95³ ≈ 14.26%. Crits double on advantage but never compound beyond the dice count.</p>
+
+<h3>Is 2d6 better than 1d12 in D&amp;D 5e?</h3>
+<p>On average, yes: 2d6 deals 7 per roll against the d12's 6.5, and never rolls below 2. The d12 answers with a 12 that 2d6 can never match. Over many attacks 2d6 wins; for a once-per-fight dramatic swing, the d12's ceiling is real damage potential.</p>
+
+<h3>What percentage is a DC 15 check in 5e?</h3>
+<p>It depends on the bonus, but the benchmarks are: +5 → 55%, +3 → 45%, +0 → 30%. With advantage on the +3 case it jumps to 69.75%. A DC 15 is deliberately the game's "moderate" anchor — risky for the untrained, routine for specialists.</p>
+
+<h3>How do you calculate how long a monster survives in 5e?</h3>
+<p>Divide the monster's effective HP by the party's expected damage per round — DPR times hit chance, summed across attackers. A 68 HP boss facing 66 expected damage per round survives about one round; quadruple the HP for a four-round fight. Simulation tools refine this estimate over thousands of rounds.</p>
+
+<h2>Conclusion: Stop Guessing, Start Aiming</h2>
+<p>Dice probability in D&amp;D 5e comes down to five tools you now own: <strong>the hit-chance formula (5% per point), the advantage equation (1 − (1 − p)²), the multi-dice average (N × (faces + 1) ÷ 2 + bonus), expected rounds (HP ÷ expected damage), and DC anchors (15 honest, 20 specialist-only)</strong>. Use them and the dice stop being weather and start being terrain — visible, mappable, something you design around instead of pray against.</p>
+<p>That closes the loop on this five-part series: you can now <a href="how-to-calculate-hp-dnd-5e.html">calculate HP</a>, price <a href="effective-hp-dnd-5e.html">effective HP</a>, audit <a href="challenge-rating-dnd-5e.html">challenge rating</a>, build <a href="encounter-building-dnd-5e.html">balanced encounters</a>, and read the dice themselves. The natural next step is practicing the whole chain in one place — open the <a href="index.html">free 20-tool toolkit</a> and run your next session's numbers in minutes, not spreadsheets. <strong>Read also:</strong> the <a href="guides.html">guide library</a> and the <a href="tools.html">tool directory</a>.</p>
+
+<div class="author-bio" style="background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; margin: 40px 0; display: flex; gap: 20px; align-items: center;">
+    <img src="/images/author-daniel.jpg" alt="Daniel - Creator of 5e HP Forge" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent);">
+    <div>
+        <h4 style="margin: 0 0 8px 0; font-size: 1.1rem; color: var(--fg);">About the Author: Daniel</h4>
+        <p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5;">
+            Daniel is a software engineer, lifelong tabletop gamer, and the creator of 5e HP Forge. With over 8 years behind the DM screen — from botched first sessions to 20-player one-shots — he built this platform to solve a problem he kept running into: most D&amp;D calculators use sloppy math or hide behind paywalls. Every formula on this site is verified against the official DMG and SRD math, and every tool is free, offline-capable, and ad-free. His home games run on nothing but dice, a laptop, and far too many homebrew statblocks.
+        </p>
+    </div>
+</div>
+
+<div class="cta-box">
+<strong>See your own odds:</strong> type any expression — <code>8d10+24</code>, <code>3d6</code>, <code>2d6+3</code> — into the free <a href="probability.html">Probability Dashboard</a> and get the exact distribution, mean and spread in one click. Then simulate the whole fight: <a href="monte-carlo.html">Monte Carlo Combat Simulator</a>.
+</div>
+
+<h2>Sources &amp; Further Reading</h2>
+<ol class="citations">
+<li><em>Player's Handbook</em> (2014), ch. 7 "Attack Rolls" and ch. 9 "Advantage and Disadvantage" — d20 mechanics and the higher/lower-of-two-dice rule.</li>
+<li><em>Player's Handbook</em> (2014), ch. 7 "Ability Checks" — difficulty class benchmarks (Easy 10, Moderate 15, Hard 20).</li>
+<li><em>Dungeon Master's Guide</em> (2014), ch. 9 — average damage conventions used for monster statistics.</li>
+<li><em>Systems Reference Document 5.1</em> (SRD 5.1), Wizards of the Coast, licensed under CC BY 4.0.</li>
+</ol>
+</main>
+
+<footer class="site-footer">
+<div class="footer-links">
+<a href="index.html">Calculator</a>
+<a href="tools.html">Tools</a>
+<a href="guides.html">Guides</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="donate.html">Donate</a>
+<a href="changelog.html">Changelog</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+<div class="fineprint">
+© <span id="footerYear">2025</span> [YOUR NAME] · Code licensed under the MIT License.<br>
+Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast. Rules content based on the D&amp;D 5e SRD 5.1 (CC BY 4.0).
+</div>
+</footer>
+</div>
+<script src="common.js" defer></script>
+</body>
+</html>
