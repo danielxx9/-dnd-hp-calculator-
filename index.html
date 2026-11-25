@@ -33,8 +33,8 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/","description":"Free D&amp;D 5e hit point calculator: hit dice math, effective HP with resistances, CR reverse-engineering, PC builder, probability curves, statblocks, encounter and initiative tracking.","publisher":{"@type":"Organization","name":"5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/"}},{"@type":"WebApplication","name":"D&D 5e HP Calculator & Monster Builder","alternateName":"5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/","applicationCategory":"GameApplication","applicationSubCategory":"Tabletop RPG Utility","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript. Works offline after first visit.","description":"Free D&amp;D 5e hit point calculator: hit dice math, effective HP with resistances, CR reverse-engineering, PC builder, probability curves, statblocks, encounter and initiative tracking.","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Hit Dice Calculator","Creature Builder","Effective HP Calculator","CR Reverse Engineering","PC Hit Point Builder","Probability Dashboard","Statblock Generator","Comparison Mode","Templates & Transformations","Encounter Builder","Advanced Combat Calculators","Monster Design Tools","PC & Party Tools","Challenge Rating Calculator","Concentration Check Calculator","Adventuring Day Budget","Party Composition Radar","Combat Tracker","Monte Carlo Combat Simulator","XP & Loot Tracker"],"publisher":{"@type":"Organization","name":"5e HP Forge","url":"https://dnd-hp-calculator.pages.dev/"}}]}
 </script>
-<link rel="stylesheet" href="styles.css?v=202611251342">
-<link rel="stylesheet" href="extra.css?v=202611251342">
+<link rel="stylesheet" href="styles.css?v=202611251349">
+<link rel="stylesheet" href="extra.css?v=202611251349">
 </head>
 <body>
 <div class="container">
@@ -997,51 +997,51 @@ Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast.
 </div>
 </footer>
 
-<script src="script.js?v=202611251342" defer></script>
+<script src="script.js?v=202611251349" defer></script>
+
 
 <script>
 (function() {
-  function getTargetTab() {
+  function openTabFromUrl() {
     var params = new URLSearchParams(window.location.search);
-    var t = params.get('tool') || params.get('tab') || window.location.hash.replace(/^#/, '');
-    if (!t || t.startsWith('s=')) return null;
-    return t.startsWith('tab-') ? t : 'tab-' + t;
+    var raw = params.get('tool') || params.get('tab') || window.location.hash.replace(/^#/, '');
+    if (!raw || raw.startsWith('s=')) return;
+    var tabId = raw.startsWith('tab-') ? raw : 'tab-' + raw;
+
+    var btn = document.querySelector('.tab-nav .tab-btn[data-tab="' + tabId + '"]');
+    var panel = document.getElementById(tabId);
+    if (!btn || !panel) return;
+
+    document.querySelectorAll('.tab-nav .tab-btn').forEach(function(b) {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+      b.setAttribute('tabindex', '-1');
+    });
+    document.querySelectorAll('.tab-panel').forEach(function(p) {
+      p.classList.remove('active');
+    });
+
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    btn.setAttribute('tabindex', '0');
+    panel.classList.add('active');
+    btn.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
   }
 
-  function applyTab() {
-    var t = getTargetTab();
-    if (!t) return true;
-    var btn = document.querySelector('[data-tab="' + t + '"]');
-    var panel = document.getElementById(t);
-    if (!btn || !panel) return false;
+  window.addEventListener('DOMContentLoaded', function() {
+    openTabFromUrl();
+    setTimeout(openTabFromUrl, 100);
+    setTimeout(openTabFromUrl, 400);
+  });
+  window.addEventListener('load', openTabFromUrl);
+  window.addEventListener('hashchange', openTabFromUrl);
 
-    if (!panel.classList.contains('active')) {
-      btn.click();
-      document.querySelectorAll('.tab-btn').forEach(function(b) {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-        b.setAttribute('tabindex', '-1');
-      });
-      document.querySelectorAll('.tab-panel').forEach(function(p) {
-        p.classList.remove('active');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      btn.setAttribute('tabindex', '0');
-      panel.classList.add('active');
-      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  document.addEventListener('click', function(e) {
+    var b = e.target.closest('.tab-nav .tab-btn[data-tab]');
+    if (b && b.dataset.tab) {
+      history.replaceState(null, '', '#' + b.dataset.tab);
     }
-    return panel.classList.contains('active');
-  }
-
-  var attempts = 0;
-  var timer = setInterval(function() {
-    attempts++;
-    if (applyTab() && attempts > 5) clearInterval(timer);
-    if (attempts > 30) clearInterval(timer);
-  }, 50);
-
-  window.addEventListener('hashchange', applyTab);
+  });
 })();
 </script>
 </body>
