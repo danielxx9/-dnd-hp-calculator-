@@ -998,5 +998,35 @@ Unofficial fan tool — not affiliated with or endorsed by Wizards of the Coast.
 </footer>
 
 <script src="script.js" defer></script>
+<script>
+(function() {
+  function openRequestedTab() {
+    var params = new URLSearchParams(window.location.search);
+    var t = params.get('tool') || params.get('tab') || window.location.hash.replace(/^#/, '');
+    if (!t || t.startsWith('s=')) return;
+    if (!t.startsWith('tab-')) t = 'tab-' + t;
+    var btn = document.querySelector('[data-tab="' + t + '"]');
+    var panel = document.getElementById(t);
+    if (btn && panel) {
+      document.querySelectorAll('.tab-btn').forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+        b.setAttribute('tabindex', '-1');
+      });
+      document.querySelectorAll('.tab-panel').forEach(function(p) {
+        p.classList.remove('active');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      btn.setAttribute('tabindex', '0');
+      panel.classList.add('active');
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
+  window.addEventListener('DOMContentLoaded', openRequestedTab);
+  window.addEventListener('load', openRequestedTab);
+  window.addEventListener('hashchange', openRequestedTab);
+})();
+</script>
 </body>
 </html>
