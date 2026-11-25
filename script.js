@@ -4018,3 +4018,49 @@ function build6(){
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build6);
 else build6();
 })();
+
+// ==================== CSP-SAFE URL TAB ROUTER ====================
+(function () {
+  function openTabFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var raw = params.get('tool') || params.get('tab') || window.location.hash.replace(/^#/, '');
+    if (!raw || raw.startsWith('s=')) return;
+    var tabId = raw.startsWith('tab-') ? raw : 'tab-' + raw;
+
+    var btn = document.querySelector('.tab-nav .tab-btn[data-tab="' + tabId + '"]');
+    var panel = document.getElementById(tabId);
+    if (!btn || !panel) return;
+
+    document.querySelectorAll('.tab-nav .tab-btn').forEach(function (b) {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+      b.setAttribute('tabindex', '-1');
+    });
+    document.querySelectorAll('.tab-panel').forEach(function (p) {
+      p.classList.remove('active');
+    });
+
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    btn.setAttribute('tabindex', '0');
+    panel.classList.add('active');
+    btn.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', openTabFromUrl);
+  } else {
+    openTabFromUrl();
+  }
+  setTimeout(openTabFromUrl, 100);
+  setTimeout(openTabFromUrl, 400);
+  window.addEventListener('load', openTabFromUrl);
+  window.addEventListener('hashchange', openTabFromUrl);
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.tab-nav .tab-btn[data-tab]');
+    if (b && b.dataset.tab) {
+      history.replaceState(null, '', '#' + b.dataset.tab);
+    }
+  });
+})();
