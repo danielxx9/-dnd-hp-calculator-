@@ -1,3 +1,14 @@
+function __getInitialTab() {
+  try {
+    var p = new URLSearchParams(window.location.search);
+    var t = p.get('tool') || p.get('tab') || window.location.hash.replace(/^#/, '');
+    if (t && !t.startsWith('s=')) {
+      if (!t.startsWith('tab-')) t = 'tab-' + t;
+      if (document.getElementById(t)) return t;
+    }
+  } catch (e) {}
+  return 'tab-calculator';
+}
 (function() {
 // ==================== CORE UTILITIES ====================
 const MAX_DICE_COUNT = 1000;
@@ -413,7 +424,7 @@ const el = document.getElementById(key);
 if (el && val !== undefined && key !== 'name' && key !== 'timestamp') el.value = val;
 }
 modal.close();
-switchTab('tab-calculator');
+switchTab(__getInitialTab());
 $('#btnCalculate').click();
 });
 });
@@ -592,7 +603,7 @@ $('#reverseResults').innerHTML = html;
 $('#reverseResults').querySelectorAll('.use-suggestion').forEach(btn => {
 btn.addEventListener('click', () => {
 $('#hdExpression').value = btn.dataset.expr;
-switchTab('tab-calculator');
+switchTab(__getInitialTab());
 $('#btnCalculate').click();
 });
 });
@@ -878,7 +889,7 @@ $('#hdExpression').value = newExpr;
 const result = calculateHP(newParsed);
 currentHPResult = result;
 $('#templateResult').innerHTML = `<strong>${note}</strong><br>New: <code>${newExpr}</code> — Avg HP: <strong>${result.average}</strong> (${result.min}–${result.max})`;
-switchTab('tab-calculator');
+switchTab(__getInitialTab());
 $('#btnCalculate').click();
 autoSave();
 });
@@ -1284,7 +1295,7 @@ $('#randomMonsterResult').addEventListener('click', (e) => {
 const useHd = e.target.closest('[data-use-hd]');
 if (useHd) {
 $('#hdExpression').value = useHd.dataset.useHd;
-switchTab('tab-calculator');
+switchTab(__getInitialTab());
 $('#btnCalculate').click();
 return;
 }
@@ -3900,7 +3911,7 @@ function build6(){
       activate6('v6-export');
     } else {
       const calc = el('btnCalculate');
-      activate6('tab-calculator');
+      activate6(__getInitialTab());
       if (calc) calc.click();
     }
   });
