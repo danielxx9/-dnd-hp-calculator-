@@ -1,6 +1,5 @@
 name = "dnd-hp-calculator"
-compatibility_date = "2026-11-19"
+compatibility_date = "2026-11-25"
 
 [assets]
-directory = "./"
-not_found_handling = "single-page-application"
+directory = "."
